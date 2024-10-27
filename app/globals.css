@@ -3,19 +3,39 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F1F4F8;
+  --foreground: #000F;
+  --panel-background: #ffffff;
+  --separator-color:#efefef6a;
+  --primary-color: #ecb5bcff;
+  --primary-color-hover: #ebc6ca;
+  --accent-color: #ecb5bcff;
+  --panel-background-50: color-mix(in srgb, var(--panel-background), #0000 70%);
+  --panel-background-faded: color-mix(in srgb, var(--panel-background), #0000 50%);
+  --primary-color-faded: color-mix(in srgb, var(--primary-color), #0000 40%);  
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000;
+    --foreground: #ffff;
+    --panel-background: #121214;
+    --separator-color: #6e6e6e6a;
+    --panel-background-faded: color-mix(in srgb, var(--panel-background), #0000 20%);
   }
 }
 
 body {
   color: var(--foreground);
-  background: var(--background);
+  background:linear-gradient(var(--panel-background-faded),var(--panel-background-faded)), url(./../public/login-background.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   font-family: Arial, Helvetica, sans-serif;
+  height: 100vh;
+  background-blend-mode: multiply;
+}
+
+input{
+  outline: none !important;
 }

@@ -1,0 +1,3 @@
+.container > .input:focus + .label{
+    background-color: aqua;
+}
