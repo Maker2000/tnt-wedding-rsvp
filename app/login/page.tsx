@@ -1,10 +1,10 @@
 "use client";
 import HideUnhideIcon from "@/app/components/HideUnhideIcon";
 import InputField from "@/app/components/InputField/InputField";
-import { Visibility } from "@mui/icons-material";
 import React from "react";
 import { useLoginHook } from "./login.hook";
-
+import "./../admin.css";
+import { CircularProgress } from "@mui/material";
 const AdminLogin = () => {
   const hook = useLoginHook();
   return (
@@ -12,12 +12,13 @@ const AdminLogin = () => {
       <form onSubmit={hook.login} className="flex flex-col w-full lg:w-1/2 xl:w-1/3 p-8 m-3 gap-2 backdrop-blur-xl bg-primary-faded-50 rounded-2xl">
         <h1 className="text-4xl">Login</h1>
         <span className="mb-6">You're getting married soon, log in to see your guests!</span>
-        <InputField type="email" title="Email" name="email" onChange={hook.setEmail} />
+        <InputField type="email" title="Email" id="email" onDataChange={hook.setEmail} disabled={hook.state.isLoading} />
         <InputField
-          type={`${hook.showPassword ? "text" : "password"}`}
+          type={`${hook.state.showPassword ? "text" : "password"}`}
           title="Password"
-          name="password"
-          onChange={hook.setPassword}
+          id="password"
+          onDataChange={hook.setPassword}
+          disabled={hook.state.isLoading}
           icon={
             <HideUnhideIcon
               onClick={() => {
@@ -31,12 +32,19 @@ const AdminLogin = () => {
           <input className="" type="checkbox" name="rememberMe" id="rememberMe" />
           <span></span>
         </label> */}
-        <input
-          className="bg-primary p-3 mt-6 rounded-xl hover:bg-primary-hover disabled:bg-gray-400 disabled:opacity-15 text-black"
-          disabled={!hook.canLogin()}
-          type="submit"
-          value="Login"
-        />
+        {hook.state.isLoading ? (
+          <CircularProgress className="self-center text-primary m-2" thickness={3} size={50} />
+        ) : (
+          <div className="flex flex-col">
+            <div className="text-red-600">{hook.state.errorMessage}</div>
+            <input
+              className="bg-primary p-3 mt-6 rounded-xl hover:bg-primary-hover disabled:bg-gray-400 disabled:opacity-15 text-black"
+              disabled={!hook.canLogin()}
+              type="submit"
+              value="Login"
+            />
+          </div>
+        )}
       </form>
     </div>
   );

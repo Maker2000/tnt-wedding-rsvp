@@ -5,7 +5,7 @@ interface HideUnhideIconProps {
   onClick: () => void;
 }
 const HideUnhideIcon = (props: HideUnhideIconProps) => {
-  var [hide, setHide] = useState(true);
+  const [hide, setHide] = useState(true);
   return (
     <div
       onClick={(e) => {
