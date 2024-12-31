@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import { IGuest, IPlusOne } from "./guest";
-import { InvitedBy, ReservationType } from "./enums";
+import { AttendanceResponse, InvitedBy, ReservationType } from "./enums";
 export interface PlusOneDoc extends mongoose.Document {
   firstName: string;
   lastName: string;
@@ -14,10 +14,8 @@ export interface GuestDoc extends mongoose.Document {
   invitedBy: InvitedBy;
   firstName: string;
   lastName: string;
-  email?: string;
-  phoneNumber?: string;
   dateCreated: Date;
-  reserved: boolean;
+  response: AttendanceResponse;
   plusOne?: IPlusOne;
 }
 
@@ -37,12 +35,6 @@ const plusOneSchema = new Schema<PlusOneDoc, PlusOneModelInterface>({
 
 const guestSchema = new Schema<GuestDoc, GuestModelInterface>(
   {
-    email: {
-      type: String,
-    },
-    phoneNumber: {
-      type: String,
-    },
     firstName: {
       type: String,
       required: true,
@@ -55,9 +47,10 @@ const guestSchema = new Schema<GuestDoc, GuestModelInterface>(
       type: Date,
       default: Date.now(),
     },
-    reserved: {
-      type: Boolean,
-      default: false,
+    response: {
+      type: String,
+      enum: AttendanceResponse,
+      default: AttendanceResponse.unanswered,
     },
     invitedBy: {
       type: String,

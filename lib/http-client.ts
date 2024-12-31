@@ -21,6 +21,12 @@ export class HttpClient {
       return await this.processResponse<Res>(res);
     });
   }
+  static async deleteData<Res>(path: string): Promise<ServiceResponse<Res>> {
+    return this.tryRequest(async () => {
+      let res = await fetch(path, { method: "DELETE" });
+      return await this.processResponse<Res>(res);
+    });
+  }
   static async putData<Res, Req>(path: string, body: Req, getResponseHeader?: (headers: Headers) => Promise<void>): Promise<ServiceResponse<Res>> {
     return this.tryRequest(async () => {
       let res = await fetch(path, { method: "PUT", body: JSON.stringify(body) });

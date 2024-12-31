@@ -9,6 +9,11 @@ export enum ReservationType {
   single = "Single",
   plusOne = "PlusOne",
 }
+export enum AttendanceResponse {
+  attending = "Attending",
+  declined = "Declined",
+  unanswered = "Unanswered",
+}
 export const GetReservationType = (type: ReservationType) => {
   switch (type) {
     case ReservationType.single:

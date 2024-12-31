@@ -12,6 +12,7 @@
     --primary-color: #ecb5bcff;
     --primary-color-hover: #ebc6ca;
     --accent-color: #ecb5bcff;
+    --acccent-2-color: #387e80;
     --panel-background-50: color-mix(in srgb, var(--panel-background), #0000 70%);
     --panel-background-faded: color-mix(in srgb, var(--panel-background), #0000 30%);
     --primary-color-faded: color-mix(in srgb, var(--primary-color), #0000 40%);  
@@ -45,17 +46,23 @@ html {
 input{
   outline: none !important;
 }
-input[type=submit], button{
+input[type=submit], 
+input[type=reset], 
+button{
   border-radius: 0.5rem;
   background-color: var(--primary-color);
   padding: 0.75rem;
   transition: background-color 200ms;
   color:black
 }
-input[type=submit]:hover,button:hover{
+input[type=submit]:hover,
+input[type=reset]:hover,
+button:hover{
   background-color: var(--primary-color-hover);
 }
-input[type=submit]:disabled, button:disabled{
+input[type=submit]:disabled,
+input[type=reset]:disabled,
+ button:disabled{
   background-color: #93939393
 }
 input:-webkit-autofill,

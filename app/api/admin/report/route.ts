@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { tryOperation } from "../../exception-filter";
 import { DashboardReport } from "@/app/models/reports";
 import { Guest } from "@/app/models/guest.mongoose";
+import { AttendanceResponse } from "@/app/models/enums";
 
 export async function GET(): Promise<NextResponse> {
   return await tryOperation(async () => {
@@ -11,10 +12,18 @@ export async function GET(): Promise<NextResponse> {
       {
         $facet: {
           totalGuests: [{ $count: "totalGuests" }],
+          declinedGuests: [
+            {
+              $match: {
+                response: { $eq: AttendanceResponse.declined },
+              },
+            },
+            { $count: "declinedGuests" },
+          ],
           reservedGuests: [
             {
               $match: {
-                reserved: { $eq: true },
+                response: { $eq: AttendanceResponse.attending },
               },
             },
             { $count: "reservedGuests" },
@@ -29,10 +38,12 @@ export async function GET(): Promise<NextResponse> {
           reservedGuests: {
             $arrayElemAt: ["$reservedGuests.reservedGuests", 0],
           },
+          declinedGuests: {
+            $arrayElemAt: ["$declinedGuests.declinedGuests", 0],
+          },
         },
       },
     ]);
-    console.log(guest);
     let res = NextResponse.json(guest[0]);
     return res;
   });

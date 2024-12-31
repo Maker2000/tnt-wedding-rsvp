@@ -22,6 +22,10 @@ function Dashboard() {
           <div>Guests RSVP:</div>
           <div>{hook.state.isLoading ? <CircularProgress size={40} /> : hook.state.reportData.reservedGuests}</div>
         </InfoCard>
+        <InfoCard>
+          <div>Guests Declined:</div>
+          <div>{hook.state.isLoading ? <CircularProgress size={40} /> : hook.state.reportData.declinedGuests}</div>
+        </InfoCard>
       </div>
     </Header>
   );

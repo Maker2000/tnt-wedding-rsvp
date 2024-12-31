@@ -29,7 +29,6 @@ export default function AuthContextProvider({ children }: AuthContextProviderPro
     if (cachedUser?.user) {
       HttpClient.getData<DisplayUser>(`/api/admin/${cachedUser.user!.id}`).then((data) => {
         if (data.data) {
-          console.log(data.data);
           setUser(new DisplayUser(data.data!));
         }
       });

@@ -14,7 +14,6 @@ export async function GET(_: NextRequest, { params }: { params: Promise<{ id: st
       { path: "adminMessages.from", model: "User", select: ["firstName", "lastName", "_id", "username"] },
       { path: "guestMessages.from", model: "Guest", select: ["firstName", "lastName", "_id"] },
     ]);
-    console.log(res);
     Validation.requireEntityFound(res, "User");
     return NextResponse.json(res);
   });

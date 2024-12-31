@@ -1,10 +1,11 @@
 import { FormEvent, useEffect, useState } from "react";
-import { IGuest } from "../models/guest";
 import { loadGuestCookie } from "@/lib/server-functions";
 import { HttpClient } from "@/lib/http-client";
-import { ApiResponseData } from "../api/exception-filter";
 import { isEmptyInputValue } from "@/lib/util";
-import { InvitedBy, ReservationType } from "../models/enums";
+import { ApiResponseData } from "@/app/api/exception-filter";
+import { IGuest } from "@/app/models/guest";
+import { AttendanceResponse, InvitedBy, ReservationType } from "@/app/models/enums";
+import { GuestService } from "@/app/services/guest.service";
 
 export const useReservationHook = () => {
   const [dto, setDto] = useState<IGuest>();
@@ -12,9 +13,10 @@ export const useReservationHook = () => {
   const setLoading = (value: boolean) => {
     setState((x) => ({ ...x, isLoading: value }));
   };
+
   useEffect(() => {
-    setState((x) => ({ ...x, reserved: dto?.reserved ?? false }));
-  }, [dto?.reserved]);
+    setState((x) => ({ ...x, reserved: dto?.response == AttendanceResponse.attending }));
+  }, [dto?.response]);
   const reserve = async (e: FormEvent<HTMLFormElement>) => {
     if (!dto) {
       setState((x) => ({ ...x, hasError: true, errorMessage: "Error occured, please refresh the page" }));
@@ -22,21 +24,47 @@ export const useReservationHook = () => {
     }
     setState((x) => ({ ...x, isLoading: true, loadingMessage: "Reserving..." }));
     e.preventDefault();
-    let res = await HttpClient.putData<ApiResponseData, IGuest>(`/api/guest/${dto!.id}`, { ...dto!, reserved: true });
+    let res = await GuestService.reserveInvitate(dto!); // HttpClient.putData<ApiResponseData, IGuest>(`/api/guest/${dto!.id}`, { ...dto!, response: AttendanceResponse.attending });
+    if (res.hasError()) {
+      setState((x) => ({
+        ...x,
+        isLoading: false,
+        loadingMessage: "Reserving...",
+        hasError: true,
+        errorMessage: res.error?.message ?? "Unknown error occured.",
+      }));
+    } else {
+      setState((x) => ({
+        ...x,
+        reserved: true,
+        isLoading: false,
+        loadingMessage: "Reserving...",
+        hasError: false,
+        errorMessage: "",
+      }));
+    }
+  };
+  const decline = async (e: FormEvent<HTMLFormElement>) => {
+    if (!dto) {
+      setState((x) => ({ ...x, hasError: true, errorMessage: "Error occured, please refresh the page" }));
+      return;
+    }
+    setState((x) => ({ ...x, isLoading: true, loadingMessage: "Reserving..." }));
+    e.preventDefault();
+    let res = await GuestService.declineInvitate(dto!);
     setState((x) => ({
       ...x,
       isLoading: false,
-      loadingMessage: "Reserving...",
+      loadingMessage: "Declining...",
       hasError: true,
-      errorMessage: res.error?.message ?? res.data?.message ?? "Unknown error occured.",
+      errorMessage: res.error?.message ?? "Unknown error occured.",
     }));
   };
   const getUserData = async () => {
     setLoading(true);
     let res = await loadGuestCookie();
     if (res) {
-      let guest = await HttpClient.getData<IGuest>(`/api/guest/${res.id}`);
-      console.log(guest);
+      let guest = await GuestService.getGuest(res.id);
       if (!guest.hasError()) {
         setDto((x) => (x = guest.data!));
         setState((x) => ({ ...x, hasError: false, errorMessage: "" }));
@@ -58,6 +86,9 @@ export const useReservationHook = () => {
       !state.reserved &&
       (dto?.reservationType == ReservationType.plusOne ? !isEmptyInputValue(dto?.plusOne?.firstName) && !isEmptyInputValue(dto?.plusOne?.lastName) : true)
     );
+  };
+  const removeError = () => {
+    setState((x) => ({ ...x, hasError: false }));
   };
   const setFirstName = (value: string) => {
     if (dto != undefined) setDto((x) => ({ ...x!, firstName: value }));
@@ -93,5 +124,7 @@ export const useReservationHook = () => {
     setPhoneNumber,
     setPlusOneFirstName,
     setPlusOneLastName,
+    decline,
+    removeError,
   };
 };

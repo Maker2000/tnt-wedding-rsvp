@@ -26,7 +26,7 @@ export const useGuestsHook = () => {
         headerName: "Plus 1",
       },
       {
-        field: "reserved",
+        field: "response",
       },
     ],
     isLoading: true,

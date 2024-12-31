@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { InvitedBy, ReservationType } from "./enums";
+import { AttendanceResponse, InvitedBy, ReservationType } from "./enums";
 
 export interface IPlusOne {
   firstName: string;
@@ -11,8 +11,6 @@ export interface CreateGuestDto {
   invitedBy?: string;
   firstName: string;
   lastName: string;
-  email?: string;
-  phoneNumber?: string;
   plusOne?: IPlusOne;
 }
 
@@ -22,10 +20,8 @@ export interface IGuest {
   invitedBy: InvitedBy;
   firstName: string;
   lastName: string;
-  email?: string;
-  phoneNumber?: string;
   dateCreated: Date;
-  reserved: boolean;
+  response: AttendanceResponse;
   plusOne?: IPlusOne;
 }
 export class GuestDisplay implements IGuest {
@@ -37,7 +33,7 @@ export class GuestDisplay implements IGuest {
   email?: string | undefined;
   phoneNumber?: string | undefined;
   dateCreated!: Date;
-  reserved!: boolean;
+  response!: AttendanceResponse;
   plusOne?: IPlusOne | undefined;
   public get fullName(): string {
     return `${this.firstName} ${this.lastName}`;

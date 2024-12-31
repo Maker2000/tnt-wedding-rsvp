@@ -14,7 +14,7 @@ function GuestDetails() {
   return (
     <Header title="Guest">
       {hook.state.isLoading ? (
-        <FullScreenLoading message="Fetching guest..." />
+        <FullScreenLoading isLoading={hook.state.isLoading} message={hook.state.loadingMessage} />
       ) : (
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex flex-col gap-3 bg-background p-4 basis-2/5 rounded-2xl justify-between">
@@ -32,13 +32,7 @@ function GuestDetails() {
                   </div>
                 ) : null}
               </div>
-              <div>
-                <Email className="mr-4" /> {hook.state.guest!.email ?? "-"}
-              </div>
-              <div>
-                <Phone className="mr-4" /> {hook.state.guest!.phoneNumber ?? "-"}
-              </div>
-              <div>{hook.state.guest!.reserved ? "Reserved" : "Not Reserved"}</div>
+              <div>Status: {hook.state.guest!.response}</div>
             </div>
             <button className="bg-red-500 text-white hover:bg-red-400" onClick={() => hook.deleteGuest()}>
               Delete Guest
@@ -46,7 +40,19 @@ function GuestDetails() {
           </div>
           <div className="flex flex-col gap-3 bg-background p-4 basis-3/5 rounded-2xl">
             <div className="flex items-center">
-              <Share className="mr-4" /> <div className="">{hook.state.qrLink}</div> <ContentCopy className="ml-4" />
+              <Share className="mr-4" />{" "}
+              <div className="">
+                <a href={hook.state.qrLink} target="_blank">
+                  {hook.state.qrLink}
+                </a>
+              </div>
+              <div
+                className="cursor-pointer"
+                onClick={() => {
+                  navigator.clipboard.writeText(hook.state.qrLink);
+                }}>
+                <ContentCopy className="ml-4" />
+              </div>
             </div>
             <div className="m-3 self-center" ref={hook.qrRef} />
           </div>

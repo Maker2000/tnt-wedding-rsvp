@@ -3,8 +3,7 @@ import { ApiResponseData, tryOperation, UnauthorizedException } from "../../exce
 import { ResetPasswordDto, validatePasswordReset } from "@/app/models/user";
 import { Contract, Validation } from "@/lib/contracts";
 import connectDB from "@/lib/mongose-client";
-import { cookies } from "next/headers";
-import { getGuestTokenFromRequest, loadAdminCookie } from "@/lib/server-functions";
+import { loadAdminCookie } from "@/lib/server-functions";
 import { compare, genSalt, hash } from "bcrypt";
 import { User } from "@/app/models/user.mongoose";
 
@@ -18,7 +17,6 @@ export async function PUT(req: NextRequest) {
     await connectDB();
     let user = await User.findById(contextUser.id);
     Validation.requireNotNull(user, "Incorrect username-password combination");
-    console.log(user);
     let match = await compare(payload.oldPassword!, user!.password);
     let newPasswordMatch = await compare(payload.newPassword!, user!.password);
     Validation.requires(match, "Incorrect username-password combination");

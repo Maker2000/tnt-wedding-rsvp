@@ -19,9 +19,9 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
     await connectDB();
     let guest: IGuest = await req.json();
     Contract.requireNotNull(guest, "Data to update guest is required");
-    let res = await Guest.updateOne({ _id: guest.id }, guest!);
-    Validation.requires(res.acknowledged, "Failed to update your user, try again");
-    return NextResponse.json(new ApiResponseData("Successfully saved!"));
+    let res = await Guest.findOneAndUpdate({ _id: guest.id }, guest!);
+    Validation.requireNotNull(res, "Failed to update your user, try again");
+    return NextResponse.json(res);
   });
 }
 export async function DELETE(_: NextRequest, { params }: { params: Promise<{ id: string }> }): Promise<NextResponse> {

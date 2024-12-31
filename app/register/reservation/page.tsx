@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect } from "react";
 import { useReservationHook } from "./reservation.hook";
-import InputField, { InputDropdown } from "../components/InputField/InputField";
-import { CircularProgress } from "@mui/material";
-import { InvitedBy, ReservationType } from "../models/enums";
-import Header from "../components/Header";
-import Logo from "../components/Logo";
+import { Button, CircularProgress, Modal } from "@mui/material";
+import Header from "@/app/components/Header";
+import Logo from "@/app/components/Logo";
+import InputField, { InputDropdown } from "@/app/components/InputField/InputField";
+import { InvitedBy, ReservationType } from "@/app/models/enums";
 
 const Register = () => {
   const hook = useReservationHook();
@@ -18,18 +18,11 @@ const Register = () => {
         <div className="relative flex flex-col items-center">
           <div className="flex flex-col w-full max-w-5xl p-5">
             <div className="text-center flex flex-col gap-8 items-center">
-              <Logo size={240} />
-              <div className="text-7xl font-bold font-shadows-into-light">Terrence</div>
-              <div className="text-2xl font-bold font-shadows-into-light">AND</div>
-              <div className="text-7xl font-bold font-shadows-into-light">Rochelle</div>
-              INVITE YOU TO CELEBRATE THEIR MARRIAGE
-              {/* Love is in the air {hook.dto?.firstName}. We, , requests your presence at their
-              wedding. It would be a pleasure to have you celebrate this moment with us. */}
               <br />
               <br /> You may RSVP below.
             </div>
             <br />
-            <form onSubmit={hook.reserve} className="flex flex-col gap-4 justify-stretch items-stretch">
+            <form onSubmit={hook.reserve} onReset={hook.decline} className="flex flex-col gap-4 justify-stretch items-stretch">
               <div className="flex flex-col md:flex-row gap-4">
                 <InputField
                   className="basis-1/2"
@@ -105,11 +98,14 @@ const Register = () => {
                   </div>
                 </>
               )}
-              {hook.state.reserved ? <div className="text-center">Seems you've already been registered. Thank you for attending our wedding.</div> : null}
-              <div className="flex flex-col md:flex-row gap-4 justify-center">
-                <input className="basis-1/2" disabled={!hook.canReserve()} type="submit" value="Reserve" />
-                <input className="basis-1/2" disabled={!hook.canReserve()} type="submit" value="Decline" />
-              </div>
+              {hook.state.reserved ? (
+                <div className="text-center">Seems you've already been registered. Thank you for attending our wedding.</div>
+              ) : (
+                <div className="flex flex-col md:flex-row gap-4 justify-center">
+                  <input className="basis-1/2" disabled={!hook.canReserve()} type="submit" value="Reserve" />
+                  <input className="basis-1/2" disabled={hook.state.reserved} type="reset" value="Decline" />
+                </div>
+              )}
             </form>
           </div>
           {hook.state.isLoading ? (
@@ -118,11 +114,19 @@ const Register = () => {
               <CircularProgress className="self-center text-primary m-2" thickness={3} size={50} color="error" />
             </div>
           ) : null}
-          {hook.state.hasError ? (
+          <Modal
+            open={hook.state.hasError}
+            onClose={() => {
+              hook.removeError();
+            }}
+            className="flex justify-center items-center">
+            <div className="relative bg-background p-10">{hook.state.errorMessage}</div>
+          </Modal>
+          {/* {hook.state.hasError ? (
             <div className="absolute text-lg flex items-center justify-center flex-col w-full h-full backdrop-blur-sm">
-              {hook.state.errorMessage} <button>Ok</button>
+              {hook.state.errorMessage} <button onClick={() => {}}>Ok</button>
             </div>
-          ) : null}
+          ) : null} */}
         </div>
       </Header>
     </>
