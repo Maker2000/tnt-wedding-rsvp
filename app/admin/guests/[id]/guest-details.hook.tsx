@@ -85,7 +85,7 @@ export const useGuestDetails = () => {
   useEffect(() => {
     qrCode.append(qrRef.current ?? undefined);
     getGuest();
-  });
+  }, []);
 
   useEffect(() => {
     qrCode.append(qrRef.current ?? undefined);

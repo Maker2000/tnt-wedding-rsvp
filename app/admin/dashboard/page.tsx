@@ -8,7 +8,7 @@ function Dashboard() {
   const hook = useDashboardHook();
   useEffect(() => {
     hook.getReport();
-  });
+  }, []);
   return (
     <Header title="Dashboard">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 p-4 w-full">
