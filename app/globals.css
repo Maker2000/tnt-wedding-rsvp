@@ -12,9 +12,9 @@
     --primary-color: #ecb5bcff;
     --primary-color-hover: #ebc6ca;
     --accent-color: #ecb5bcff;
-    --acccent-2-color: #387e80;
+    --acccent-2-color: #40E0D0;
     --panel-background-50: color-mix(in srgb, var(--panel-background), #0000 70%);
-    --panel-background-faded: color-mix(in srgb, var(--panel-background), #0000 30%);
+    --panel-background-faded: color-mix(in srgb, var(--panel-background), #0000 65%);
     --primary-color-faded: color-mix(in srgb, var(--primary-color), #0000 40%);  
     --blendMode: screen;
   }
@@ -25,16 +25,16 @@
       --foreground: #ffffff;
       --panel-background: #121214;
       --separator-color: #6e6e6e6a;
-      --panel-background-faded: color-mix(in srgb, var(--panel-background), #0000 15%);
+      --panel-background-faded: color-mix(in srgb, var(--panel-background), #0000 50%);
       --blendMode: multiply;
     }
   }
 }
 html {
   color: var(--foreground);
-  background:linear-gradient(var(--panel-background-faded),var(--panel-background-faded)), url(./../public/login-background.jpg);
-  background:-webkit-linear-gradient(var(--panel-background-faded),var(--panel-background-faded)), url(./../public/login-background.jpg);
-  background-position: center;
+  background:linear-gradient(var(--panel-background-faded),var(--panel-background-faded)), url(./../public/us1.PNG);
+  background:-webkit-linear-gradient(var(--panel-background-faded),var(--panel-background-faded)), url(./../public/us1.PNG);
+  background-position: 50% 25%;
   background-repeat: no-repeat;
   background-size: cover;
 
