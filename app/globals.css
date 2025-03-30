@@ -32,8 +32,8 @@
 }
 html {
   color: var(--foreground);
-  background:linear-gradient(var(--panel-background-faded),var(--panel-background-faded)), url(./../public/us1.PNG);
-  background:-webkit-linear-gradient(var(--panel-background-faded),var(--panel-background-faded)), url(./../public/us1.PNG);
+  background:linear-gradient(var(--panel-background-faded),var(--panel-background-faded)), url(/login-background.jpg);
+  background:-webkit-linear-gradient(var(--panel-background-faded),var(--panel-background-faded)), url(/login-background.jpg);
   background-position: 50% 25%;
   background-repeat: no-repeat;
   background-size: cover;

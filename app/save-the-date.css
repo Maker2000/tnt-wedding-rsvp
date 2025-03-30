@@ -13,8 +13,8 @@ html {
     --card-move-animation: 2s;
 }
 .save-the-date-card-content{
-    background:linear-gradient(var(--panel-background-faded),var(--panel-background-faded)), url(./../public/us1.PNG);
-    background:-webkit-linear-gradient(var(--panel-background-faded),var(--panel-background-faded)), url(./../public/us1.PNG);
+    background:linear-gradient(var(--panel-background-faded),var(--panel-background-faded)), url(/us1.PNG);
+    background:-webkit-linear-gradient(var(--panel-background-faded),var(--panel-background-faded)), url(/us1.PNG);
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
