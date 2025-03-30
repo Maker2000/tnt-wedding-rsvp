@@ -16,16 +16,16 @@ function SaveTheDate() {
           if (!clicked) setClicked(true);
         }}
         tabIndex={-1}>
-        <Image className="lid one" src="/envelope-flap-1.png" alt="" />
+        <Image className="lid one" fill={true} src="/envelope-flap-1.png" alt="" />
         <div className="lid one lid-one-logo">
           <Logo leaf={false} size={80} />
         </div>
         <div className="lid two flex items-center justify-center">
           <div className="lid-two-logo"></div>
         </div>
-        <Image className="lid two" src="/envelope-flap-2.png" alt="" />
-        <Image className="envelope" src="/envelope-front.png" alt="" />
-        <Image className="" src="/envelope-inner.png" alt="" />
+        <Image className="lid two" fill={true} src="/envelope-flap-2.png" alt="" />
+        <Image className="envelope" fill={true} src="/envelope-front.png" alt="" />
+        <Image className="" fill={true} src="/envelope-inner.png" alt="" />
         <div className={`absolute z-[2] top-0 transition-all duration-500 letter ${clicked ? "letter-focus" : ""}`}>
           <div className="flex flex-col items-center font-bold gap-4 p-8 save-the-date-card-content rounded-xl">
             <div className="text-xl italic">“… A three fold cord is not quickly broken” - Ecclesiastes 4:12</div>

@@ -96,10 +96,10 @@ html {
     }
 
     100%{
-        scale: 120%;
+        scale: 110%;
         rotate: 0deg;
         z-index: 4; 
-        top: -100%;
+        top: -80%;
     }
 
 }
