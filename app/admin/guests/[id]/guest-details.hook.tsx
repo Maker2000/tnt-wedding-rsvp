@@ -54,7 +54,7 @@ export const useGuestDetails = () => {
   const id = params["id"];
   const deleteGuest = async () => {
     setState((x) => (x = { ...x, isLoading: true, loadingMessage: "Deleting guest..." }));
-    let res = await HttpClient.deleteData<IGuest>(`/api/guest/${id}`);
+    const res = await HttpClient.deleteData<IGuest>(`/api/guest/${id}`);
     if (res.hasError()) {
       setState((x) => (x = { ...x, isLoading: false, errorMessage: res.error!.message, hasError: true, guest: null }));
       return;
@@ -64,7 +64,7 @@ export const useGuestDetails = () => {
   };
   const getGuest = async () => {
     setState((x) => (x = { ...x, isLoading: true, loadingMessage: "Fetching guest..." }));
-    let res = await HttpClient.getData<IGuest>(`/api/guest/${id}`);
+    const res = await HttpClient.getData<IGuest>(`/api/guest/${id}`);
     if (res.hasError()) {
       setState((x) => (x = { ...x, isLoading: false, errorMessage: res.error!.message, hasError: true, qrLink: "", guest: null }));
       return;
@@ -85,7 +85,7 @@ export const useGuestDetails = () => {
   useEffect(() => {
     qrCode.append(qrRef.current ?? undefined);
     getGuest();
-  }, []);
+  });
 
   useEffect(() => {
     qrCode.append(qrRef.current ?? undefined);

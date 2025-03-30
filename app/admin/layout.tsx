@@ -4,7 +4,6 @@ import SideNav from "../components/Nav/SideNav";
 import "./../admin.css";
 import { CookieKey } from "../models/enums";
 import { redirect } from "next/navigation";
-import AuthContextProvider, { AuthContext } from "../providers/auth.context";
 export default async function AdminLayout({
   children,
 }: Readonly<{

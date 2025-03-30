@@ -8,7 +8,7 @@ import { CookieKey, UserType } from "@/app/models/enums";
 import { Contract, Validation } from "@/lib/contracts";
 import { User } from "@/app/models/user.mongoose";
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   return await tryOperation(async () => {
     let payload: LoginDto = await req.json();
     Contract.requireNotNull(payload, "Login data is required.");

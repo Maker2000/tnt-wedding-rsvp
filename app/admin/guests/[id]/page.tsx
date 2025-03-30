@@ -1,12 +1,10 @@
 "use client";
-import { useParams, usePathname } from "next/navigation";
 import React, { useEffect } from "react";
 import { useGuestDetails } from "./guest-details.hook";
 import FullScreenLoading from "@/app/components/FullScreenLoading";
 import Header from "@/app/components/Header";
 import { GetReservationType, ReservationType } from "@/app/models/enums";
-import { CheckBoxOutlineBlank, CheckBoxOutlineBlankRounded, ContentCopy, CopyAll, Email, EventSeat, LinkOff, Person, Phone, Share } from "@mui/icons-material";
-import { Checkbox, Link } from "@mui/material";
+import { ContentCopy, EventSeat, Person, Share } from "@mui/icons-material";
 
 function GuestDetails() {
   const hook = useGuestDetails();

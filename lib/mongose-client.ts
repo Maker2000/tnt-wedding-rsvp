@@ -12,7 +12,7 @@ const opts: ConnectOptions = {
   dbName: process.env.DATABASE_NAME,
 };
 async function connectDB() {
-  let globalWithMongo = global as typeof globalThis & {
+  const globalWithMongo = global as typeof globalThis & {
     mongoose: {
       conn?: Mongoose | null;
       promise?: Promise<Mongoose> | null;

@@ -1,12 +1,9 @@
 "use client";
 import Header from "@/app/components/Header";
-import MessageCard from "@/app/components/MessageCard";
 import NavLink from "@/app/components/NavLink";
-import { Message } from "@/app/models/user";
 import { useAuthContext } from "@/app/providers/auth.context";
 import { logout } from "@/lib/server-functions";
 import { Divider } from "@mui/material";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
 

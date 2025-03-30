@@ -1,8 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { loadGuestCookie } from "@/lib/server-functions";
-import { HttpClient } from "@/lib/http-client";
 import { isEmptyInputValue } from "@/lib/util";
-import { ApiResponseData } from "@/app/api/exception-filter";
 import { IGuest } from "@/app/models/guest";
 import { AttendanceResponse, InvitedBy, ReservationType } from "@/app/models/enums";
 import { GuestService } from "@/app/services/guest.service";
@@ -24,7 +22,7 @@ export const useReservationHook = () => {
     }
     setState((x) => ({ ...x, isLoading: true, loadingMessage: "Reserving..." }));
     e.preventDefault();
-    let res = await GuestService.reserveInvitate(dto!); // HttpClient.putData<ApiResponseData, IGuest>(`/api/guest/${dto!.id}`, { ...dto!, response: AttendanceResponse.attending });
+    const res = await GuestService.reserveInvitate(dto!); // HttpClient.putData<ApiResponseData, IGuest>(`/api/guest/${dto!.id}`, { ...dto!, response: AttendanceResponse.attending });
     if (res.hasError()) {
       setState((x) => ({
         ...x,
@@ -51,7 +49,7 @@ export const useReservationHook = () => {
     }
     setState((x) => ({ ...x, isLoading: true, loadingMessage: "Reserving..." }));
     e.preventDefault();
-    let res = await GuestService.declineInvitate(dto!);
+    const res = await GuestService.declineInvitate(dto!);
     setState((x) => ({
       ...x,
       isLoading: false,
@@ -62,9 +60,9 @@ export const useReservationHook = () => {
   };
   const getUserData = async () => {
     setLoading(true);
-    let res = await loadGuestCookie();
+    const res = await loadGuestCookie();
     if (res) {
-      let guest = await GuestService.getGuest(res.id);
+      const guest = await GuestService.getGuest(res.id);
       if (!guest.hasError()) {
         setDto((x) => (x = guest.data!));
         setState((x) => ({ ...x, hasError: false, errorMessage: "" }));

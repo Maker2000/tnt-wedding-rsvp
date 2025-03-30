@@ -6,7 +6,7 @@ export const useDashboardHook = () => {
   const [state, setState] = useState({ isLoading: true, reportData: { totalGuests: 0, reservedGuests: 0 } as DashboardReport });
   const getReport = async () => {
     setState((x) => (x = { ...x, isLoading: true }));
-    let res = await HttpClient.getData<DashboardReport>("/api/admin/report");
+    const res = await HttpClient.getData<DashboardReport>("/api/admin/report");
     if (res.hasError()) {
       setState((x) => (x = { ...x, isLoading: false }));
       return;

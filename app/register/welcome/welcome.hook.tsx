@@ -3,16 +3,16 @@ import { IGuest } from "@/app/models/guest";
 import { GuestService } from "@/app/services/guest.service";
 import { loadGuestCookie } from "@/lib/server-functions";
 import { redirect, RedirectType } from "next/navigation";
-import { FormEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export const useGuestWelcomeHook = () => {
   const [currentGuest, setCurrentGuest] = useState<IGuest>();
   const [state, setState] = useState({ isLoading: true, response: AttendanceResponse.unanswered, hasError: false, errorMessage: "" });
   const getUserData = async () => {
     // setState((x) => (x = { ...x, isLoading: true }));
-    let res = await loadGuestCookie();
+    const res = await loadGuestCookie();
     if (res) {
-      let guest = await GuestService.getGuest(res.id);
+      const guest = await GuestService.getGuest(res.id);
       if (!guest.hasError()) {
         setState((x) => (x = { ...x, hasError: false, errorMessage: "", isLoading: false, response: guest.data!.response }));
         setCurrentGuest((x) => (x = guest.data!));
@@ -35,7 +35,7 @@ export const useGuestWelcomeHook = () => {
   const decline = async () => {
     if (currentGuest) {
       setState((x) => (x = { ...x, isLoading: true }));
-      let res = await GuestService.declineInvitate(currentGuest);
+      const res = await GuestService.declineInvitate(currentGuest);
       if (res.hasError()) {
         setState((x) => (x = { ...x, isLoading: false, hasError: true, errorMessage: res.error!.message }));
       } else {

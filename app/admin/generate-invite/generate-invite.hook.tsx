@@ -14,7 +14,7 @@ export const useGenerateInviteHook = () => {
   const generateGuestInvite = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     setIsLoading(true);
-    let res = await HttpClient.postData<GuestQrUrlResponse, CreateGuestDto>("/api/admin/generate-guest-qr", dto);
+    const res = await HttpClient.postData<GuestQrUrlResponse, CreateGuestDto>("/api/admin/generate-guest-qr", dto);
     if (res.hasError()) {
       setState(
         (x) =>

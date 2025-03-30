@@ -7,7 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Contract, Validation } from "@/lib/contracts";
 import { Guest } from "@/app/models/guest.mongoose";
 
-export async function POST(req: NextRequest, res: NextResponse) {
+export async function POST(req: NextRequest) {
   return await tryOperation(async () => {
     let payload: CreateGuestDto = await req.json();
     Contract.requireNotNull(payload, "Data to create guest QR is required");

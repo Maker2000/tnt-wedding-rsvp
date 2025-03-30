@@ -1,12 +1,7 @@
 "use client";
 import Header from "@/app/components/Header";
-import QRCodeStyling, { cornerDotTypes } from "qr-code-styling";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useGuestsHook } from "./guests.hook";
-import InputField, { InputDropdown } from "@/app/components/InputField/InputField";
-import { ReservationType } from "@/app/models/enums";
-import { Table, TableBody, TableCell, TableHead, TableRow, TableSortLabel } from "@mui/material";
-import { CheckBox, CheckBoxOutlineBlank } from "@mui/icons-material";
 import { AgGridReact } from "ag-grid-react";
 import { useRouter } from "next/navigation";
 

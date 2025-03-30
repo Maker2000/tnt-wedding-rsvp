@@ -1,8 +1,7 @@
-import { ReservationType } from "@/app/models/enums";
-import { CreateGuestDto, GuestDisplay, IGuest } from "@/app/models/guest";
+import { GuestDisplay, IGuest } from "@/app/models/guest";
 import { HttpClient } from "@/lib/http-client";
-import { FormEvent, useCallback, useEffect, useState } from "react";
-import { ColDef, GetContextMenuItemsParams, MenuItemDef } from "ag-grid-community";
+import { useState } from "react";
+import { ColDef } from "ag-grid-community";
 interface GuestsState {
   guests: IGuest[];
   isLoading: boolean;
@@ -48,7 +47,7 @@ export const useGuestsHook = () => {
   // );
   const fetchGuests = async () => {
     setState((x) => (x = { ...x, isLoading: true }));
-    let res = await HttpClient.getData<Array<GuestDisplay>>("/api/guest");
+    const res = await HttpClient.getData<Array<GuestDisplay>>("/api/guest");
     if (res.hasError()) {
       setState((x) => (x = { ...x, isLoading: false, errorMessage: res.error!.message, guests: [] }));
       return;

@@ -5,31 +5,31 @@ export class HttpClient {
   private static async tryRequest<Res>(op: () => Promise<ServiceResponse<Res>>): Promise<ServiceResponse<Res>> {
     try {
       return await op();
-    } catch (e) {
+    } catch {
       return ServiceResponse.failed(new Error("Unknown error occured"));
     }
   }
   static async postData<Res, Req>(path: string, body: Req, getResponseHeader?: (headers: Headers) => Promise<void>): Promise<ServiceResponse<Res>> {
     return this.tryRequest(async () => {
-      let res = await fetch(path, { method: "POST", body: JSON.stringify(body) });
+      const res = await fetch(path, { method: "POST", body: JSON.stringify(body) });
       return await this.processResponse<Res>(res, getResponseHeader);
     });
   }
   static async getData<Res>(path: string): Promise<ServiceResponse<Res>> {
     return this.tryRequest(async () => {
-      let res = await fetch(path, { method: "GET" });
+      const res = await fetch(path, { method: "GET" });
       return await this.processResponse<Res>(res);
     });
   }
   static async deleteData<Res>(path: string): Promise<ServiceResponse<Res>> {
     return this.tryRequest(async () => {
-      let res = await fetch(path, { method: "DELETE" });
+      const res = await fetch(path, { method: "DELETE" });
       return await this.processResponse<Res>(res);
     });
   }
   static async putData<Res, Req>(path: string, body: Req, getResponseHeader?: (headers: Headers) => Promise<void>): Promise<ServiceResponse<Res>> {
     return this.tryRequest(async () => {
-      let res = await fetch(path, { method: "PUT", body: JSON.stringify(body) });
+      const res = await fetch(path, { method: "PUT", body: JSON.stringify(body) });
       return await this.processResponse<Res>(res, getResponseHeader);
     });
   }
