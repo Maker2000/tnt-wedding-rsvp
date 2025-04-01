@@ -1,4 +1,15 @@
 
+@media(max-width:640px) {
+    :root {
+        --scale-percent: 90%;
+    }
+}
+
+@media(min-width:641) {
+    :root {
+        --scale-percent: 120%;
+    }
+}
 * {
     margin: 0;
     padding: 0;
@@ -96,10 +107,10 @@ html {
     }
 
     100%{
-        scale: 110%;
+        scale: var(--scale-percent);
         rotate: 0deg;
         z-index: 4; 
-        top: -80%;
+        bottom: 50%;
     }
 
 }
