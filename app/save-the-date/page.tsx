@@ -1,15 +1,25 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Logo from "../components/Logo";
 import "./../save-the-date.css";
 function SaveTheDate() {
   const [clicked, setClicked] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
+  useEffect(() => {
+    if (clicked) {
+      if (audioRef.current) audioRef.current.play();
+    } else {
+      if (audioRef.current) {
+        audioRef.current?.pause();
+        audioRef.current.currentTime = 0;
+      }
+    }
+  }, [clicked]);
 
   return (
     <div className="flex flex-col items-center justify-center h-full gap-5 text-center overflow-scroll">
-      {/* <div>Save the date</div> */}
-
+      <audio ref={audioRef} src="/save-the-date.m4a" />
       <div
         className={`relative flex justify-center aspect-[3/2] h-80 z-0 bg-accent ${clicked ? "" : "dance-animation"} wrapper`}
         onClick={() => {
