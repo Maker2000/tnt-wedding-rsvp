@@ -27,7 +27,7 @@ const Welcome = () => {
               </div>
               <div>Invite you to join them in the celebration of their marriage</div>
               <div>@</div>
-              <div>place/venue</div>
+              <div>Jamgolia Place</div>
               <div>ON</div>
               <div>December 13ᵗʰ, 2025</div>
               <div>2:00pm</div>

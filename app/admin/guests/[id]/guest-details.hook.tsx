@@ -93,5 +93,18 @@ export const useGuestDetails = () => {
       data: state.qrLink,
     });
   }, [state.qrLink]);
-  return { deleteGuest, state, qrRef };
+  const copyInviteLink = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (state.guest) {
+      await navigator.clipboard.writeText(state.qrLink);
+    }
+  };
+  const downloadQRCode = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    qrCode.download({
+      name: `${state.guest?.firstName[0]}.${state.guest?.lastName}-qr-invite`,
+      extension: "png",
+    });
+  };
+  return { deleteGuest, state, qrRef, copyInviteLink, downloadQRCode };
 };

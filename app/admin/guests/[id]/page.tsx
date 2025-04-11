@@ -4,7 +4,9 @@ import { useGuestDetails } from "./guest-details.hook";
 import FullScreenLoading from "@/app/components/FullScreenLoading";
 import Header from "@/app/components/Header";
 import { GetReservationType, ReservationType } from "@/app/models/enums";
-import { ContentCopy, EventSeat, Person, Share } from "@mui/icons-material";
+import { ContentCopy, Download, EventSeat, Person, Share } from "@mui/icons-material";
+import { Button } from "@mui/material";
+import Link from "next/link";
 
 function GuestDetails() {
   const hook = useGuestDetails();
@@ -39,20 +41,19 @@ function GuestDetails() {
           <div className="flex flex-col gap-3 bg-background p-4 basis-3/5 rounded-2xl">
             <div className="flex items-center">
               <Share className="mr-4" />{" "}
-              <div className="">
-                <a href={hook.state.qrLink} target="_blank">
+              <div className="mr-4">
+                <Link href={hook.state.qrLink} target="_blank">
                   {hook.state.qrLink}
-                </a>
+                </Link>
               </div>
-              <div
-                className="cursor-pointer"
-                onClick={() => {
-                  navigator.clipboard.writeText(hook.state.qrLink);
-                }}>
-                <ContentCopy className="ml-4" />
-              </div>
+              <Button onClick={hook.copyInviteLink}>
+                <ContentCopy />
+              </Button>
             </div>
             <div className="m-3 self-center" ref={hook.qrRef} />
+            <Button onClick={hook.downloadQRCode}>
+              <Download />
+            </Button>
           </div>
         </div>
       )}

@@ -1,4 +1,4 @@
-import { compare, genSalt } from "bcrypt";
+import { compare, compareSync, genSalt } from "bcrypt";
 import { ClientException, ServerException, tryOperation } from "../../exception-filter";
 import connectDB from "@/lib/mongose-client";
 import { LoginDto } from "@/app/models/user";
@@ -14,8 +14,10 @@ export async function POST(req: NextRequest) {
     Contract.requireNotNull(payload, "Login data is required.");
     await connectDB();
     let user = await User.findOne({ email: payload.email });
+    console.log(user);
     Validation.requireNotNull(user, "Incorrect username-password combination");
-    let match = await compare(payload.password, user!.password);
+    let match = compareSync(payload.password, user!.password);
+    console.log(match);
     Validation.requires(match, "Incorrect username-password combination");
     let token = await encodeToken({ username: user!.username, id: user!.id, userType: UserType.admin });
     let res = NextResponse.json(user, {});

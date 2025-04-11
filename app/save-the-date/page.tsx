@@ -11,7 +11,7 @@ function SaveTheDate() {
       if (audioRef.current) audioRef.current.play();
     } else {
       if (audioRef.current) {
-        audioRef.current?.pause();
+        audioRef.current.pause();
         audioRef.current.currentTime = 0;
       }
     }
