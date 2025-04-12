@@ -2,8 +2,10 @@ import connectDB from "@/lib/mongose-client";
 import { NextRequest, NextResponse } from "next/server";
 import { tryOperation } from "../../exception-filter";
 import { DashboardReport } from "@/app/models/reports";
-import { Guest } from "@/app/models/guest.mongoose";
-import { AttendanceResponse } from "@/app/models/enums";
+import { Guest, GuestDoc } from "@/app/models/guest.mongoose";
+import { AttendanceResponse, ReservationType } from "@/app/models/enums";
+import { FilterQuery } from "mongoose";
+import { IGuest } from "@/app/models/guest";
 
 export async function GET(): Promise<NextResponse> {
   return await tryOperation(async () => {
@@ -12,6 +14,14 @@ export async function GET(): Promise<NextResponse> {
       {
         $facet: {
           totalGuests: [{ $count: "totalGuests" }],
+          totalPlusOne: [
+            {
+              $match: <FilterQuery<IGuest>>{
+                reservationType: { $eq: ReservationType.plusOne },
+              },
+            },
+            { $count: "totalPlusOne" },
+          ],
           declinedGuests: [
             {
               $match: {
@@ -19,6 +29,15 @@ export async function GET(): Promise<NextResponse> {
               },
             },
             { $count: "declinedGuests" },
+          ],
+          declinedPlusOne: [
+            {
+              $match: <FilterQuery<IGuest>>{
+                reservationType: { $eq: ReservationType.plusOne },
+                response: { $eq: AttendanceResponse.declined },
+              },
+            },
+            { $count: "declinedPlusOne" },
           ],
           reservedGuests: [
             {
@@ -28,18 +47,37 @@ export async function GET(): Promise<NextResponse> {
             },
             { $count: "reservedGuests" },
           ],
+          reservedPlusOne: [
+            {
+              $match: <FilterQuery<IGuest>>{
+                response: { $eq: AttendanceResponse.attending },
+                reservationType: { $eq: ReservationType.plusOne },
+                plusOne: { $exists: true, $ne: null },
+              },
+            },
+            { $count: "reservedPlusOne" },
+          ],
         },
       },
       {
         $project: {
           totalGuests: {
-            $arrayElemAt: ["$totalGuests.totalGuests", 0],
+            $ifNull: [{ $arrayElemAt: ["$totalGuests.totalGuests", 0] }, 0],
+          },
+          totalPlusOne: {
+            $ifNull: [{ $arrayElemAt: ["$totalPlusOne.totalPlusOne", 0] }, 0],
           },
           reservedGuests: {
-            $arrayElemAt: ["$reservedGuests.reservedGuests", 0],
+            $ifNull: [{ $arrayElemAt: ["$reservedGuests.reservedGuests", 0] }, 0],
+          },
+          reservedPlusOne: {
+            $ifNull: [{ $arrayElemAt: ["$reservedPlusOne.reservedPlusOne", 0] }, 0],
           },
           declinedGuests: {
-            $arrayElemAt: ["$declinedGuests.declinedGuests", 0],
+            $ifNull: [{ $arrayElemAt: ["$declinedGuests.declinedGuests", 0] }, 0],
+          },
+          declinedPlusOne: {
+            $ifNull: [{ $arrayElemAt: ["$declinedPlusOne.declinedPlusOne", 0] }, 0],
           },
         },
       },
