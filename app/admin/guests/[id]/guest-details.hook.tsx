@@ -6,8 +6,8 @@ import { useParams, useRouter } from "next/navigation";
 import QRCodeStyling from "qr-code-styling";
 import { useEffect, useRef, useState } from "react";
 const qrCode = new QRCodeStyling({
-  // width: 500,
-  // height: 500,
+  width: 500,
+  height: 500,
   image: "/ourLogo-no-leaf.svg",
   dotsOptions: {
     color: "#ecb5bc",
@@ -27,7 +27,7 @@ const qrCode = new QRCodeStyling({
   imageOptions: {
     crossOrigin: "anonymous",
     margin: 0,
-    // imageSize: 0.2,
+    imageSize: 0.4,
   },
 });
 export const useGuestDetails = () => {

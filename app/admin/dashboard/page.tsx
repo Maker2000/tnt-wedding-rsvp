@@ -14,15 +14,21 @@ function Dashboard() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 p-4 w-full">
         <InfoCard className="lg:col-span-2">
           <div>Guests:</div>
-          <div>{hook.state.isLoading ? <CircularProgress size={40} /> : hook.state.reportData.totalGuests}</div>
+          <div>
+            {hook.state.isLoading ? <CircularProgress size={20} thickness={2} /> : hook.state.reportData.totalGuests + hook.state.reportData.totalPlusOne}
+          </div>
         </InfoCard>
         <InfoCard>
           <div>Guests RSVP:</div>
-          <div>{hook.state.isLoading ? <CircularProgress size={40} /> : hook.state.reportData.reservedGuests}</div>
+          <div>
+            {hook.state.isLoading ? <CircularProgress size={20} thickness={2} /> : hook.state.reportData.reservedGuests + hook.state.reportData.reservedPlusOne}
+          </div>
         </InfoCard>
         <InfoCard>
           <div>Guests Declined:</div>
-          <div>{hook.state.isLoading ? <CircularProgress size={40} /> : hook.state.reportData.declinedGuests}</div>
+          <div>
+            {hook.state.isLoading ? <CircularProgress size={20} thickness={2} /> : hook.state.reportData.declinedGuests + hook.state.reportData.declinedPlusOne}
+          </div>
         </InfoCard>
       </div>
     </Header>
