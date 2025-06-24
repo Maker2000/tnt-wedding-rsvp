@@ -14,7 +14,9 @@ function Carousel({ folder, count, ext = "jpg", prefix = "" }: CarouselProps) {
   const startX = useRef<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [containerWidth, setContainerWidth] = useState(0);
-  const images = useMemo(() => Array.from({ length: count }, (_, i) => `/${folder}/${prefix}${i + 1}.${ext}`), [folder, count, ext]);
+  const images = useMemo(() => {
+    return Array.from({ length: count }, (_, i) => `/${folder}/${prefix}${i + 1}.${ext}`);
+  }, [folder, count, ext]);
 
   useEffect(() => {
     if (containerRef.current) {
