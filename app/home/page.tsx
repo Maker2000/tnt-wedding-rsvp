@@ -11,7 +11,7 @@ export default function Home() {
         <div>Getting Married</div>
       </h1>
       <div className="font-shadows-into-light text-5xl">T & R</div>
-      <Carousel folder="carousel/photo-shoot" prefix="shoot" count={17} />
+      <Carousel folder="carousel/photo-shoot" prefix="shoot" ext="JPG" count={17} />
     </div>
   );
 }
