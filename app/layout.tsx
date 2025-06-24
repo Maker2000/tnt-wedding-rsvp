@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <AuthContextProvider>
       <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable} h-screen contain-content antialiased`}>{children}</body>
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
       </html>
     </AuthContextProvider>
   );

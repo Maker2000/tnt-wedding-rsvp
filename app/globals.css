@@ -37,10 +37,9 @@ html {
   background-position: 50% 25%;
   background-repeat: no-repeat;
   background-size: cover;
-
   font-family: Arial, Helvetica, sans-serif;
-  height: 100vh;
   background-blend-mode:var(--blendMode);
+  background-attachment: fixed;
 }
 
 input{
