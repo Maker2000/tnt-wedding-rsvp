@@ -4,6 +4,7 @@ import { isEmptyInputValue } from "@/lib/util";
 import { IGuest } from "@/app/models/guest";
 import { AttendanceResponse, InvitedBy, ReservationType } from "@/app/models/enums";
 import { GuestService } from "@/app/services/guest.service";
+import { redirect } from "next/navigation";
 
 export const useReservationHook = () => {
   const [dto, setDto] = useState<IGuest>();
@@ -22,7 +23,7 @@ export const useReservationHook = () => {
     }
     setState((x) => ({ ...x, isLoading: true, loadingMessage: "Reserving..." }));
     e.preventDefault();
-    const res = await GuestService.reserveInvitate(dto!); // HttpClient.putData<ApiResponseData, IGuest>(`/api/guest/${dto!.id}`, { ...dto!, response: AttendanceResponse.attending });
+    const res = await GuestService.reserveInvite(dto!); // HttpClient.putData<ApiResponseData, IGuest>(`/api/guest/${dto!.id}`, { ...dto!, response: AttendanceResponse.attending });
     if (res.hasError()) {
       setState((x) => ({
         ...x,
@@ -40,6 +41,7 @@ export const useReservationHook = () => {
         hasError: false,
         errorMessage: "",
       }));
+      redirect("/register/welcome");
     }
   };
   const decline = async (e: FormEvent<HTMLFormElement>) => {
@@ -49,7 +51,7 @@ export const useReservationHook = () => {
     }
     setState((x) => ({ ...x, isLoading: true, loadingMessage: "Reserving..." }));
     e.preventDefault();
-    const res = await GuestService.declineInvitate(dto!);
+    const res = await GuestService.declineInvite(dto!);
     setState((x) => ({
       ...x,
       isLoading: false,

@@ -7,6 +7,7 @@ import { GetReservationType, ReservationType } from "@/app/models/enums";
 import { ContentCopy, Download, EventSeat, Person, Share } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import Link from "next/link";
+import GuestQRCode from "@/app/components/GuestQRCode";
 
 function GuestDetails() {
   const hook = useGuestDetails();
@@ -16,7 +17,7 @@ function GuestDetails() {
       {hook.state.isLoading ? (
         <FullScreenLoading isLoading={hook.state.isLoading} message={hook.state.loadingMessage} />
       ) : (
-        <div className="flex flex-col md:flex-row gap-4">
+        <div className="flex flex-col lg:flex-row gap-4">
           <div className="flex flex-col gap-3 bg-background p-4 basis-2/5 rounded-2xl justify-between">
             <div>
               <div className="text-2xl font-semibold">
@@ -39,21 +40,7 @@ function GuestDetails() {
             </button>
           </div>
           <div className="flex flex-col gap-3 bg-background p-4 basis-3/5 rounded-2xl">
-            <div className="flex items-center">
-              <Share className="mr-4" />{" "}
-              <div className="mr-4">
-                <Link href={hook.state.qrLink} target="_blank">
-                  {hook.state.qrLink}
-                </Link>
-              </div>
-              <Button onClick={hook.copyInviteLink}>
-                <ContentCopy />
-              </Button>
-            </div>
-            <div className="m-3 self-center" ref={hook.qrRef} />
-            <Button onClick={hook.downloadQRCode}>
-              <Download />
-            </Button>
+            <GuestQRCode qrLink={hook.state.qrLink} guestName={hook.state.guest!.firstName + " " + hook.state.guest!.lastName} />
           </div>
         </div>
       )}

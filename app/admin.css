@@ -1,12 +1,1 @@
-html {
-    color: var(--foreground);
-    background:linear-gradient(var(--panel-background-faded),var(--panel-background-faded)), url(./../public/login-background.jpg);
-    background:-webkit-linear-gradient(var(--panel-background-faded),var(--panel-background-faded)), url(./../public/login-background.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    font-family: Arial, Helvetica, sans-serif;
-    height: 100vh;
-    background-blend-mode:var(--blendMode);
-}
+

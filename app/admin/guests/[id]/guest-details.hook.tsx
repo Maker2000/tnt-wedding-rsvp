@@ -3,33 +3,8 @@
 import { IGuest } from "@/app/models/guest";
 import { HttpClient } from "@/lib/http-client";
 import { useParams, useRouter } from "next/navigation";
-import QRCodeStyling from "qr-code-styling";
 import { useEffect, useRef, useState } from "react";
-const qrCode = new QRCodeStyling({
-  width: 500,
-  height: 500,
-  image: "/ourLogo-no-leaf.svg",
-  dotsOptions: {
-    color: "#ecb5bc",
-    type: "dots",
-  },
-  cornersDotOptions: {
-    color: "#387e80",
-    type: "dot",
-  },
-  cornersSquareOptions: {
-    color: "#387e80",
-    type: "extra-rounded",
-  },
-  backgroundOptions: {
-    color: "#fff",
-  },
-  imageOptions: {
-    crossOrigin: "anonymous",
-    margin: 0,
-    imageSize: 0.4,
-  },
-});
+
 export const useGuestDetails = () => {
   const params = useParams();
   const router = useRouter();
@@ -83,28 +58,15 @@ export const useGuestDetails = () => {
     }
   };
   useEffect(() => {
-    qrCode.append(qrRef.current ?? undefined);
     getGuest();
   }, []);
 
-  useEffect(() => {
-    qrCode.append(qrRef.current ?? undefined);
-    qrCode.update({
-      data: state.qrLink,
-    });
-  }, [state.qrLink]);
   const copyInviteLink = async (e: React.MouseEvent) => {
     e.preventDefault();
     if (state.guest) {
       await navigator.clipboard.writeText(state.qrLink);
     }
   };
-  const downloadQRCode = async (e: React.MouseEvent) => {
-    e.preventDefault();
-    qrCode.download({
-      name: `${state.guest?.firstName[0]}.${state.guest?.lastName}-qr-invite`,
-      extension: "png",
-    });
-  };
-  return { deleteGuest, state, qrRef, copyInviteLink, downloadQRCode };
+
+  return { deleteGuest, state, qrRef, copyInviteLink };
 };
