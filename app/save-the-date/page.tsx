@@ -18,7 +18,7 @@ function SaveTheDate() {
   }, [clicked]);
 
   return (
-    <div className="flex flex-col items-center justify-center h-full gap-5 text-center overflow-scroll">
+    <div className="flex flex-col items-center justify-center h-screen gap-5 text-center overflow-scroll">
       <audio ref={audioRef} src="/save-the-date.mp3" />
       <div
         className={`relative flex justify-center aspect-[3/2] h-80 z-0 bg-accent ${clicked ? "" : "dance-animation"} wrapper`}

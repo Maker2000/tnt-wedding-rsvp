@@ -10,6 +10,10 @@
         --scale-percent: 120%;
     }
 }
+:root {
+    --foreground: #ffffff;
+    --panel-background-faded: color-mix(in srgb, black, #0000 80%);
+}
 * {
     margin: 0;
     padding: 0;

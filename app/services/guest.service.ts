@@ -8,10 +8,10 @@ export class GuestService {
   static guestEndpoint(id: string): string {
     return `/api/guest/${id}`;
   }
-  static async reserveInvitate(dto: IGuest): Promise<ServiceResponse<IGuest>> {
+  static async reserveInvite(dto: IGuest): Promise<ServiceResponse<IGuest>> {
     return await HttpClient.putData<IGuest, IGuest>(this.guestEndpoint(dto.id), { ...dto!, response: AttendanceResponse.attending });
   }
-  static async declineInvitate(dto: IGuest): Promise<ServiceResponse<IGuest>> {
+  static async declineInvite(dto: IGuest): Promise<ServiceResponse<IGuest>> {
     return await HttpClient.putData<IGuest, IGuest>(this.guestEndpoint(dto.id), { ...dto!, response: AttendanceResponse.declined });
   }
   static async deleteGuest(id: string): Promise<ServiceResponse<ApiResponseData>> {
