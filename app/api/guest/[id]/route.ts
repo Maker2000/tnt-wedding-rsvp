@@ -21,6 +21,7 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
     Contract.requireNotNull(guest, "Data to update guest is required");
     let res = await Guest.findOneAndUpdate({ _id: guest.id }, guest!);
     Validation.requireNotNull(res, "Failed to update your user, try again");
+    console.log("Updated guest", res);
     return NextResponse.json(res);
   });
 }

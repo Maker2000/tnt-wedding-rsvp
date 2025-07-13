@@ -6,6 +6,8 @@ import { useGenerateInviteHook } from "./generate-invite.hook";
 import Header from "@/app/components/Header";
 import { CircularProgress } from "@mui/material";
 import QRCodeStyling from "qr-code-styling";
+import { Guest } from "@/app/models/guest.mongoose";
+import GuestQRCode from "@/app/components/GuestQRCode";
 const qrCode = new QRCodeStyling({
   // width: 500,
   // height: 500,
@@ -65,19 +67,19 @@ function GenerateInvite() {
           )}
         </form>
         <div className="text-red-500">{hook.state.errorMessage}</div>
-        <div className="m-3 self-center" ref={qrRef} />
         {hook.state.qrCodeGenerated ? (
-          <div className="flex flex-row justify-around w-full">
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                qrCode.download();
-              }}>
-              Download QR Code
-            </button>
-            <button>Copy Link</button>
-          </div>
-        ) : null}
+          <GuestQRCode qrLink={hook.state.qrUrl} guestName={hook.dto.firstName + " " + hook.dto.lastName} />
+        ) : // <div className="flex flex-row justify-around w-full">
+        //   <button
+        //     onClick={(e) => {
+        //       e.preventDefault();
+        //       qrCode.download();
+        //     }}>
+        //     Download QR Code
+        //   </button>
+        //   <button>Copy Link</button>
+        // </div>
+        null}
       </div>
     </Header>
   );

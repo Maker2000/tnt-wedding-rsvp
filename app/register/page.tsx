@@ -18,8 +18,8 @@ function Register() {
     });
   }, []);
   return (
-    <div>
-      <div>Valiating...</div>
+    <div className="flex flex-col items-center justify-center h-screen">
+      <div>Valiating Invite...</div>
       <div>{state.errorMessage}</div>
     </div>
   );

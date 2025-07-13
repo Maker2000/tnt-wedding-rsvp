@@ -86,7 +86,7 @@ function Carousel({ folder, count, ext = "jpg", prefix = "" }: CarouselProps) {
           className="p-0 m-0 gap-0"
           style={{
             display: "flex",
-            transform: `translateX(calc(${-current * 100}% + ${dragXPercent}% - ${current / 5}px))`,
+            transform: `translateX(calc(${-current * 100}% + ${dragXPercent}%))`,
             transition,
             width: `${images.length * 100}%`,
             height: "100%",
