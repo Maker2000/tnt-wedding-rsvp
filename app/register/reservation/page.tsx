@@ -75,7 +75,36 @@ const Register = () => {
               />
               {hook.dto?.reservationType != ReservationType.plusOne ? null : (
                 <>
-                  <div className="px-2 text-lg">Plus One: </div>
+                  <div className="flex flex-row items-center ">
+                    <label htmlFor="hasPlusOneCheckBox" className="px-2 text-lg">
+                      Plus One:
+                    </label>
+                    <div className="relative flex flex-row items-center">
+                      <input
+                        className="appearance-none w-6 h-6 border-2 rounded-sm bg-white checked:bg-primary checked:border-0"
+                        onChange={(e) => {
+                          hook.setHasPlusOne(e.target.checked);
+                        }}
+                        checked={hook.state.hasPlusOne}
+                        type="checkbox"
+                        name="hasPlusOneCheckBox"
+                        id="hasPlusOneCheckBox"
+                      />
+                      <svg
+                        style={{ pointerEvents: "none" }}
+                        className={`w-6 h-6 top-0 absolute ${hook.state.hasPlusOne ? "block" : "hidden"} peer-checked:block`}
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                    </div>
+                  </div>
+
                   <div className="flex flex-col md:flex-row gap-4">
                     <InputField
                       className="basis-1/2"

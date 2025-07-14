@@ -8,11 +8,20 @@ import { redirect } from "next/navigation";
 
 export const useReservationHook = () => {
   const [dto, setDto] = useState<IGuest>();
-  const [state, setState] = useState({ isLoading: true, errorMessage: "", hasError: false, loadingMessage: "Loading User Data...", reserved: false });
+  const [state, setState] = useState({
+    isLoading: true,
+    errorMessage: "",
+    hasError: false,
+    loadingMessage: "Loading User Data...",
+    reserved: false,
+    hasPlusOne: true,
+  });
   const setLoading = (value: boolean) => {
     setState((x) => ({ ...x, isLoading: value }));
   };
-
+  const setHasPlusOne = (value: boolean) => {
+    setState((x) => ({ ...x, hasPlusOne: value }));
+  };
   useEffect(() => {
     setState((x) => ({ ...x, reserved: dto?.response == AttendanceResponse.attending }));
   }, [dto?.response]);
@@ -84,7 +93,9 @@ export const useReservationHook = () => {
       !isEmptyInputValue(dto?.lastName) &&
       !isEmptyInputValue(dto?.invitedBy) &&
       !state.reserved &&
-      (dto?.reservationType == ReservationType.plusOne ? !isEmptyInputValue(dto?.plusOne?.firstName) && !isEmptyInputValue(dto?.plusOne?.lastName) : true)
+      (dto?.reservationType == ReservationType.plusOne && state.hasPlusOne
+        ? !isEmptyInputValue(dto?.plusOne?.firstName) && !isEmptyInputValue(dto?.plusOne?.lastName)
+        : true)
     );
   };
   const removeError = () => {
@@ -126,5 +137,6 @@ export const useReservationHook = () => {
     setPlusOneLastName,
     decline,
     removeError,
+    setHasPlusOne,
   };
 };
