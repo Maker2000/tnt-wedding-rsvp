@@ -88,7 +88,7 @@ export const InputDropdown = (props: DropdownInputProps) => {
           </div>
           <ArrowDropDown />
         </div>
-        <div className={`absolute top-full left-0 mt-1 w-full ${state.hasFocus ? "" : "hidden"} bg-background text-foreground`}>
+        <div className={`absolute top-full z-50 left-0 mt-1 w-full ${state.hasFocus ? "" : "hidden"} bg-background text-foreground`}>
           {props.items.map((x) => {
             return (
               <div
