@@ -18,7 +18,7 @@ function Guests() {
         <AgGridReact
           pagination={true}
           paginationPageSize={20}
-          onRowDoubleClicked={(e) => {
+          onRowClicked={(e) => {
             router.push(`/admin/guests/${e.data?.id}`);
           }}
           // gridOptions={{
