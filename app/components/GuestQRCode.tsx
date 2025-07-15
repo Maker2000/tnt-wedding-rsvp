@@ -34,7 +34,7 @@ export default function GuestQRCode({ qrLink, guestName }: GuestQRCodeProps) {
       qrCodeRef.current = new QRCodeStyling({
         width: qrSize,
         height: qrSize,
-        image: "/ourLogo-no-leaf.svg",
+        image: "/ourLogo-no-leaf.png",
         dotsOptions: {
           color: "#ecb5bc",
           type: "dots",
@@ -100,7 +100,7 @@ export default function GuestQRCode({ qrLink, guestName }: GuestQRCodeProps) {
     const tempQR = new QRCodeStyling({
       width: 500,
       height: 500,
-      image: "/ourLogo-no-leaf.svg",
+      image: "/ourLogo-no-leaf.png",
       dotsOptions: {
         color: "#ecb5bc",
         type: "dots",
@@ -134,8 +134,8 @@ export default function GuestQRCode({ qrLink, guestName }: GuestQRCodeProps) {
         if (c) {
           observer.disconnect();
           resolved = true;
-          // Add a short delay to ensure QR code is fully rendered
-          setTimeout(() => resolve(c as HTMLCanvasElement), 200);
+          // Increase delay to 1000ms for mobile compatibility
+          setTimeout(() => resolve(c as HTMLCanvasElement), 1000);
         }
       });
       observer.observe(tempDiv, { childList: true, subtree: true });
@@ -144,7 +144,7 @@ export default function GuestQRCode({ qrLink, guestName }: GuestQRCodeProps) {
       if (c) {
         observer.disconnect();
         resolved = true;
-        setTimeout(() => resolve(c as HTMLCanvasElement), 200);
+        setTimeout(() => resolve(c as HTMLCanvasElement), 1000);
       }
       // Timeout fallback (in case MutationObserver fails)
       setTimeout(() => {
@@ -152,8 +152,9 @@ export default function GuestQRCode({ qrLink, guestName }: GuestQRCodeProps) {
           observer.disconnect();
           resolve(tempDiv.querySelector("canvas") as HTMLCanvasElement | null);
         }
-      }, 1200);
+      }, 2000);
     });
+    // If you still see blank QR codes on mobile, try using a PNG logo instead of SVG for image: "/ourLogo-no-leaf.png"
     let finalCanvas = canvas;
     if (canvas && guestName) {
       finalCanvas = await drawNameAboveQRCode(canvas, guestName);
