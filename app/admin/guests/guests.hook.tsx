@@ -27,6 +27,12 @@ export const useGuestsHook = () => {
       {
         field: "response",
       },
+      {
+        headerName: "Invited By",
+        valueGetter: (params) => {
+          return params.data?.invitedBy ? params.data!.invitedBy : "N/A";
+        },
+      },
     ],
     isLoading: true,
     errorMessage: "",

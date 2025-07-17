@@ -40,7 +40,7 @@ export const useGuestWelcomeHook = () => {
         setState((x) => (x = { ...x, hasError: false, errorMessage: "", isLoading: false }));
         setCurrentGuest((x) => (x = guest.data!));
       } else {
-        setState((x) => (x = { ...x, hasError: true, errorMessage: guest.error!.message, isLoading: false }));
+        redirect("/", RedirectType.replace);
       }
     } else {
       setState(
@@ -55,6 +55,8 @@ export const useGuestWelcomeHook = () => {
   const reserve = () => {
     redirect("/register/reservation", RedirectType.replace);
   };
+  const cutoffDate = new Date("2025-10-13T23:59:00Z");
+  const isCutoffDatePassed = () => new Date() > cutoffDate;
   const decline = async () => {
     if (currentGuest) {
       setState((x) => (x = { ...x, isLoading: true, loadingMessage: "Declining..." }));
@@ -68,5 +70,5 @@ export const useGuestWelcomeHook = () => {
       }
     }
   };
-  return { reserve, decline, state, address, eventInfo, mapsUrl, currentGuest };
+  return { reserve, decline, state, address, eventInfo, mapsUrl, currentGuest, cutoffDate, isCutoffDatePassed, setCurrentGuest };
 };
