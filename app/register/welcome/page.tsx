@@ -9,6 +9,7 @@ import Countdown from "@/app/components/Countdown";
 import { GuestDisplay } from "@/app/models/guest";
 import Separator from "@/app/components/Separator";
 import { format } from "date-fns";
+import Link from "next/link";
 
 const Welcome = () => {
   const hook = useGuestWelcomeHook();
@@ -78,6 +79,7 @@ const Welcome = () => {
               </a>
             </div>
             <Separator />
+            <div className="text-3xl">Black Tie Attire</div>
             {hook.eventInfo.map((x, index) => (
               <div key={index}>
                 <div className="text-3xl uppercase pb-1">{x.title}</div>
@@ -98,7 +100,7 @@ const Welcome = () => {
             ) : hook.currentGuest?.response == AttendanceResponse.unanswered && !hook.isCutoffDatePassed() ? (
               <>
                 <div className="text-2xl pt-8">Please RSVP below</div>
-                <div className="flex gap-8 pt-12">
+                <div className="flex gap-5 pt-12">
                   <button
                     onClick={() => {
                       hook.reserve();
@@ -116,6 +118,13 @@ const Welcome = () => {
             ) : null}
           </>
         )}
+        <Separator />
+        <div className="text-xl">
+          Since you're down here, check out our{" "}
+          <Link className="text-primary underline" href={"/"}>
+            homepage
+          </Link>
+        </div>
       </div>
     </>
   );

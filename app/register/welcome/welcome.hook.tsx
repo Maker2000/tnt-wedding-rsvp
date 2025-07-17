@@ -40,7 +40,7 @@ export const useGuestWelcomeHook = () => {
         setState((x) => (x = { ...x, hasError: false, errorMessage: "", isLoading: false }));
         setCurrentGuest((x) => (x = guest.data!));
       } else {
-        setState((x) => (x = { ...x, hasError: true, errorMessage: guest.error!.message, isLoading: false }));
+        redirect("/", RedirectType.replace);
       }
     } else {
       setState(
