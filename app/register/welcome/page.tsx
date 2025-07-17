@@ -8,6 +8,7 @@ import { Place, Timer } from "@mui/icons-material";
 import Countdown from "@/app/components/Countdown";
 import { GuestDisplay } from "@/app/models/guest";
 import Separator from "@/app/components/Separator";
+import { format } from "date-fns";
 
 const Welcome = () => {
   const hook = useGuestWelcomeHook();
@@ -87,12 +88,14 @@ const Welcome = () => {
               </div>
             ))}
             <Separator />
+            <div className="font-bold text-lg">Please RSVP before: {format(hook.cutoffDate, "EEEE, MMMM do, yyyy")} </div>
+            <Separator />
             {donationsAndGifts("Monetary gifts are preferred.")}
             {hook.state.isLoading ? (
               <>
                 <Loading message={hook.state.loadingMessage} />
               </>
-            ) : hook.currentGuest?.response == AttendanceResponse.unanswered ? (
+            ) : hook.currentGuest?.response == AttendanceResponse.unanswered && !hook.isCutoffDatePassed() ? (
               <>
                 <div className="text-2xl pt-8">Please RSVP below</div>
                 <div className="flex gap-8 pt-12">
