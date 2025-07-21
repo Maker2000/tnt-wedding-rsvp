@@ -216,7 +216,7 @@ export default function GuestQRCode({ qrLink, guestName }: GuestQRCodeProps) {
         await navigator.share({
           files: [file],
           title: "You're Invited!",
-          text: `We're getting married! 💍 RSVP here: ${qrLink}`,
+          text: `We're getting married! 💍 RSVP here: ${qrLink}.\n\nPlease note: You can visit this link after you RSVP to see any changes and/or details related to the wedding.`,
         });
       } catch (err) {
         console.error("Share failed:", err);
