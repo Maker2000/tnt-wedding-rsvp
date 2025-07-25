@@ -55,7 +55,7 @@ function Countdown({ targetDate, title, todayMessage, passedMessage }: Countdown
   ];
   return (
     <div>
-      {title != null && <div className="text-3xl font-shadows-into-light font-bold mb-2">{title}</div>}
+      {title != null && <div className="text-3xl font-shadows-into-light text-center font-bold mb-2">{title}</div>}
       {status === "today" && <div className="text-5xl font-shadows-into-light font-bold my-2">{todayMessage ?? "Today is the big day! 🎉"}</div>}
       {status === "passed" && (
         <div className="text-5xl font-bold my-2">{passedMessage ?? "The event has passed. Thank you for being part of our special day!"}</div>
