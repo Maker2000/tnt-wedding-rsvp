@@ -8,42 +8,46 @@ import { CircularProgress } from "@mui/material";
 import QRCodeStyling from "qr-code-styling";
 import { Guest } from "@/app/models/guest.mongoose";
 import GuestQRCode from "@/app/components/GuestQRCode";
-const qrCode = new QRCodeStyling({
-  // width: 500,
-  // height: 500,
-  image: "/ourLogo-no-leaf.svg",
-  dotsOptions: {
-    color: "#ecb5bc",
-    type: "dots",
-  },
-  cornersDotOptions: {
-    color: "#387e80",
-    type: "dot",
-  },
-  cornersSquareOptions: {
-    color: "#387e80",
-    type: "extra-rounded",
-  },
-  backgroundOptions: {
-    color: "#fff",
-  },
-  imageOptions: {
-    crossOrigin: "anonymous",
-    margin: 0,
-    // imageSize: 0.2,
-  },
-});
+let qrCode: QRCodeStyling;
 function GenerateInvite() {
   const hook = useGenerateInviteHook();
 
   const qrRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    qrCode.append(qrRef.current ?? undefined);
+    if (typeof window !== "undefined") {
+      qrCode = new QRCodeStyling({
+        // width: 500,
+        // height: 500,
+        image: "/ourLogo-no-leaf.svg",
+        dotsOptions: {
+          color: "#ecb5bc",
+          type: "dots",
+        },
+        cornersDotOptions: {
+          color: "#387e80",
+          type: "dot",
+        },
+        cornersSquareOptions: {
+          color: "#387e80",
+          type: "extra-rounded",
+        },
+        backgroundOptions: {
+          color: "#fff",
+        },
+        imageOptions: {
+          crossOrigin: "anonymous",
+          margin: 0,
+          // imageSize: 0.2,
+        },
+      });
+      qrCode.append(qrRef.current ?? undefined);
+    }
   }, []);
   useEffect(() => {
-    qrCode.update({
-      data: hook.state.qrUrl,
-    });
+    if (typeof window !== "undefined")
+      qrCode.update({
+        data: hook.state.qrUrl,
+      });
   }, [hook.state]);
   return (
     <Header title="Generate Invite QR">
