@@ -50,7 +50,7 @@ export const useReservationHook = () => {
         hasError: false,
         errorMessage: "",
       }));
-      redirect("/register/welcome");
+      redirect("/home#how-we-met");
     }
   };
   const decline = async (e: FormEvent<HTMLFormElement>) => {

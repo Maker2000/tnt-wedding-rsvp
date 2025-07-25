@@ -8,6 +8,7 @@ import { CalendarMonth, Close, MenuBook, MyLocationSharp, Place, Timelapse, Time
 import Countdown from "../components/Countdown";
 import { Menu } from "@mui/material";
 import Separator from "../components/Separator";
+import { weddingDate } from "@/lib/constants";
 
 export default function Home() {
   return (
@@ -22,16 +23,51 @@ export default function Home() {
         <div className="text-xl">Are Getting Married</div>
       </h1>
       <Separator />
-      <Countdown targetDate={new Date(2025, 12, 13, 14, 0, 0)} title="Wedding Countdown" />
+      <Countdown targetDate={weddingDate} title="Wedding Countdown" />
       <Separator />
 
-      <div id="how-we-met" className="flex flex-col w-11/12 md:w-8/12 text-left justify-center self-center">
+      <div id="how-we-met" className="flex flex-col w-11/12 md:w-8/12 text-left justify-center self-center gap-3">
         <div className="font-shadows-into-light text-3xl font-bold">How We Met</div>
-        <div>
-          Groom here, I met Rochelle on Facebook in 2015. I actually mistook her for an old classmate of mine. It was when I mentioned something related to my
-          old high school that she didn't relate to that I realized she wasn't the person I thought she was. We continued talking because, to me, I had made a
-          new friend. It wasn't until a few months into knowing and talking to her that I fell for her. I was smitten by her beauty, her intelligence, and her
-          kindness. I knew she was the one for me, and I started a long 8-month pursuit for her. She eventually agreed to be my person, and the rest is history.
+        <div className="flex flex-col gap-4">
+          <div>
+            <div className="font-shadows-into-light text-xl font-bold">Groom</div>I met Rochelle on Facebook in 2015. I actually mistook her for an old
+            classmate of mine. It was when I mentioned something related to my old high school that she didn't relate to that I realized she wasn't the person I
+            thought she was. We continued talking because, to me, I had made a new friend. It wasn't until a few months into knowing and talking to her that I
+            fell for her. I was smitten by her beauty, her intelligence, and her kindness. I knew she was the one for me, and I started a long 8-month pursuit
+            for her. She eventually agreed to be my person, and the rest is history.
+          </div>
+          <div>
+            <div className="font-shadows-into-light text-xl font-bold">Bride</div>
+            <div className="flex flex-col gap-2">
+              <div>
+                If you've ever wondered what happens when a Facebook message turns into forever, here is the story. The real story. It started in July 2015 when
+                I got a message from someone named Terrence Signature Band Matthews (Yes, that was his real Facebook name 🙄). Come on, was I being approached
+                by a full gospel fusion band?
+              </div>
+              <div className="italic">
+                His opening line? “Hello”
+                <br />
+                No context, no follow up, just “hello”
+                <br />
+                We started chatting. Easy, normal conversation. I assumed he knew who I was. I mean he messaged me right? Besides, I knew who he was. Then
+                September, just two months after us talking, he drops “youre a former Knoxite after all”.
+              </div>
+              <div>
+                Except, I wasn't. I never went to Knox. That's when I realized this man had no idea who I actually was. He had mistaken me for someone else the
+                whole time, while I was here thinking we shared a past.
+                <br />
+                It didn't matter. By then, we were already vibing. He was sweet, funny, and OBVIOUSLY smitten. He couldn’t back out even if he tried. Then came
+                March 2016. The official beginning of the pursuit. That's when he stepped up. He was intentional, consistent, and real. He showed me exactly who
+                he was.
+                <br />
+                Eight months later, I said yes to being his girlfriend.
+                <br />
+                And now I'm saying yes to being his wife.
+                <br />
+                So no, I didn't go to that school, but I'm graduating into forever with him now.
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <Separator />
@@ -50,7 +86,7 @@ export default function Home() {
         <div className="font-shadows-into-light text-3xl font-bold">Rochelle</div>
         <div className="font-shadows-into-light text-2xl">the Bride</div>
         <div className="mt-3">
-          From the begining, loving Terrence has felt natural, grounding, and full of joy. He is the love of my life, the calm to my storm, and the laughter in
+          From the beginning, loving Terrence has felt natural, grounding, and full of joy. He is the love of my life, the calm to my storm, and the laughter in
           my soul. As we prepare to step into marriage, my heart is full. I'm confident in our friendship, and our future. I love him without hesitation. I
           can't wait for us to build an incredible life together.
         </div>

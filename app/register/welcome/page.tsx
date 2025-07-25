@@ -10,6 +10,7 @@ import { GuestDisplay } from "@/app/models/guest";
 import Separator from "@/app/components/Separator";
 import { format } from "date-fns";
 import Link from "next/link";
+import { weddingDate } from "@/lib/constants";
 
 const Welcome = () => {
   const hook = useGuestWelcomeHook();
@@ -51,6 +52,7 @@ const Welcome = () => {
         ) : (
           <>
             <Logo size={150} />
+
             <div>
               <div className="flex flex-col justify-stretch font-bold font-shadows-into-light pb-5">
                 <div className="text-5xl">Terrence</div>
@@ -59,10 +61,25 @@ const Welcome = () => {
               </div>
               <div className="text-lg">Invite you, {hook.currentGuest?.firstName}, to share in the joy of their wedding day.</div>
             </div>
+            <div className="flex flex-row justify-center gap-4 mt-4">
+              <Link
+                href="/home#photos"
+                className="text-lg font-bold px-4 py-2 rounded-lg bg-primary shadow hover:bg-primary/20 active:scale-95 transition"
+                style={{ touchAction: "manipulation" }}>
+                Photos
+              </Link>
+              <span className="px-2 text-4xl">|</span>
+              <Link
+                href="/home#how-we-met"
+                className="text-lg font-bold px-4 py-2 rounded-lg bg-primary shadow hover:bg-primary/20 active:scale-95 transition"
+                style={{ touchAction: "manipulation" }}>
+                How We Met
+              </Link>
+            </div>
             <Separator />
             <div>
               <div className="text-3xl pb-3">Saturday, December 13ᵗʰ, 2025</div>
-              <Countdown targetDate={new Date(2025, 12, 13, 14, 0, 0)} />
+              <Countdown targetDate={weddingDate} />
             </div>
             <Separator />
             <div>
@@ -118,13 +135,6 @@ const Welcome = () => {
             ) : null}
           </>
         )}
-        <Separator />
-        <div className="text-xl">
-          Since you're down here, check out our{" "}
-          <Link className="text-primary underline" href={"/"}>
-            homepage
-          </Link>
-        </div>
       </div>
     </>
   );

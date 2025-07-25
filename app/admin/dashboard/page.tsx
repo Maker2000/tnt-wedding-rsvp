@@ -4,6 +4,8 @@ import React, { useEffect } from "react";
 import { useDashboardHook } from "./dashboard.hook";
 import { CircularProgress } from "@mui/material";
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from "recharts";
+import Countdown from "@/app/components/Countdown";
+import { weddingDate } from "@/lib/constants";
 
 function Dashboard() {
   const hook = useDashboardHook();
@@ -25,6 +27,7 @@ function Dashboard() {
 
   return (
     <Header title="Dashboard">
+      <Countdown targetDate={weddingDate} />
       <div className="w-full flex justify-center items-center p-4">
         <div className="w-full h-[30rem] bg-background p-8 rounded-xl">
           <ResponsiveContainer width="100%" height="100%">
