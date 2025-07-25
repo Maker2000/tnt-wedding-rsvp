@@ -19,7 +19,7 @@ function Register() {
   }, []);
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <div>Valiating Invite...</div>
+      <div className="text-xl">Validating Invite...</div>
       <div>{state.errorMessage}</div>
     </div>
   );
