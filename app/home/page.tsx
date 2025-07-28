@@ -47,10 +47,10 @@ export default function Home() {
               <div className="italic">
                 His opening line? “Hello”
                 <br />
-                No context, no follow up, just “hello”
+                No context, no follow-up, just “hello.”
                 <br />
-                We started chatting. Easy, normal conversation. I assumed he knew who I was. I mean he messaged me right? Besides, I knew who he was. Then
-                September, just two months after us talking, he drops “youre a former Knoxite after all”.
+                We started chatting. Easy, normal conversation. I assumed he knew who I was. I mean, he messaged me, right? Besides, I knew who he was. Then
+                September, just two months after us talking, he drops “you're a former Knoxite after all.”
               </div>
               <div>
                 Except, I wasn't. I never went to Knox. That's when I realized this man had no idea who I actually was. He had mistaken me for someone else the

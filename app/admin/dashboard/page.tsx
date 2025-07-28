@@ -28,7 +28,9 @@ function Dashboard() {
   return (
     <Header title="Dashboard">
       <div className="py-8 bg-background rounded-xl m-4">
-        <Countdown targetDate={weddingDate} title="Until Our Wedding Day" />
+        <div className="scale-[80%] sm:scale-100">
+          <Countdown targetDate={weddingDate} title="Until Our Wedding Day" />
+        </div>
       </div>
       <div className="w-full flex justify-center items-center p-4">
         <div className="w-full h-[30rem] bg-background p-8 rounded-xl">
