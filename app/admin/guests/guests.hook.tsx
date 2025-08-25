@@ -17,6 +17,7 @@ export const useGuestsHook = () => {
           return `${params.data?.firstName} ${params.data?.lastName}`;
         },
         headerName: "Name",
+        filter: true,
       },
       {
         valueGetter: (params) => {
