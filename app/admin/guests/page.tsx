@@ -14,7 +14,7 @@ function Guests() {
 
   return (
     <Header title="Guests">
-      <div className="h-[calc(100vh-20rem)] sm:h-[calc(100vh-12rem)] ag-theme-quartz ag-theme-custom">
+      <div className="h-[calc(100vh-18rem)] sm:h-[calc(100vh-12rem)] ag-theme-quartz ag-theme-custom">
         <AgGridReact
           pagination={true}
           paginationPageSize={20}

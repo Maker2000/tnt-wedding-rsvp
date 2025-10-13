@@ -55,7 +55,7 @@ export const useGuestWelcomeHook = () => {
   const reserve = () => {
     redirect("/register/reservation", RedirectType.replace);
   };
-  const cutoffDate = new Date("2025-10-13T23:59:00Z");
+  const cutoffDate = new Date("2025-10-17T23:59:00Z");
   const isCutoffDatePassed = () => new Date() > cutoffDate;
   const decline = async () => {
     if (currentGuest) {
