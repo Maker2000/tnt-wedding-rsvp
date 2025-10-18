@@ -1,15 +1,10 @@
-"use client";
 import React, { Suspense } from "react";
-import AdminLogin from "./admin-login";
-import { useSearchParams } from "next/navigation";
+import AdminLoginClient from "./AdminLoginClient";
 
-function AdminLoginWrapper() {
-  const params = useSearchParams();
+export default function Page() {
   return (
-    <Suspense>
-      <AdminLogin nextUrl={params} />
+    <Suspense fallback={<div className="p-4">Loading…</div>}>
+      <AdminLoginClient />
     </Suspense>
   );
 }
-
-export default AdminLoginWrapper;

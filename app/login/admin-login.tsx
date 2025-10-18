@@ -1,3 +1,5 @@
+"use client";
+
 import HideUnhideIcon from "@/components/HideUnhideIcon";
 import InputField from "@/components/InputField/InputField";
 import React from "react";
