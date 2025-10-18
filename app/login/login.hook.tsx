@@ -11,7 +11,7 @@ export const useLoginHook = () => {
   const [dto, setDto] = useState<LoginDto>({ email: "", password: "" });
   const [state, setState] = useState({ showPassword: false, errorMessage: "", isLoading: false });
   const router = useRouter();
-  const nextUrl = useSearchParams();
+
   const auth = useAuthContext();
   const toggleShowPassword = () => {
     setState(
@@ -55,6 +55,7 @@ export const useLoginHook = () => {
       setIsLoading(false);
       setErrorMessage("");
       auth.setUser(new DisplayUser(res.data!));
+      const nextUrl = useSearchParams();
       router.replace(nextUrl.get("next") ?? "/admin");
     }
   };

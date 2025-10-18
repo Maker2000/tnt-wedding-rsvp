@@ -3,7 +3,6 @@ import HideUnhideIcon from "@/components/HideUnhideIcon";
 import InputField from "@/components/InputField/InputField";
 import React from "react";
 import { useLoginHook } from "./login.hook";
-import "./../admin.css";
 import { CircularProgress } from "@mui/material";
 const AdminLogin = () => {
   const hook = useLoginHook();
