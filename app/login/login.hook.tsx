@@ -3,11 +3,11 @@ import { DisplayUser, IUser, LoginDto } from "@/app/models/user";
 import { HttpClient } from "@/lib/http-client";
 import { FormEvent, useState } from "react";
 import { CookieKey } from "../models/enums";
-import { useRouter, useSearchParams } from "next/navigation";
+import { ReadonlyURLSearchParams, useRouter, useSearchParams } from "next/navigation";
 import { saveAdminCookie } from "@/lib/server-functions";
 import { useAuthContext } from "../providers/auth.context";
 
-export const useLoginHook = () => {
+export const useLoginHook = (nextUrl: ReadonlyURLSearchParams) => {
   const [dto, setDto] = useState<LoginDto>({ email: "", password: "" });
   const [state, setState] = useState({ showPassword: false, errorMessage: "", isLoading: false });
   const router = useRouter();
@@ -40,7 +40,6 @@ export const useLoginHook = () => {
   const setIsLoading = (value: boolean) => {
     setState((x) => (x = { ...x, isLoading: value }));
   };
-
   const login = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setErrorMessage("");
@@ -55,7 +54,7 @@ export const useLoginHook = () => {
       setIsLoading(false);
       setErrorMessage("");
       auth.setUser(new DisplayUser(res.data!));
-      const nextUrl = useSearchParams();
+
       router.replace(nextUrl.get("next") ?? "/admin");
     }
   };
