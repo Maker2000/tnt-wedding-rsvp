@@ -1,5 +1,5 @@
 "use client";
-import Header from "@/app/components/Header";
+import Header from "@/components/Header";
 import React, { useEffect } from "react";
 import { useGuestsHook } from "./guests.hook";
 import { AgGridReact } from "ag-grid-react";

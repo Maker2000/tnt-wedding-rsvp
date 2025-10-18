@@ -2,9 +2,9 @@
 import React, { useEffect } from "react";
 import { useReservationHook } from "./reservation.hook";
 import { Button, CircularProgress, Modal } from "@mui/material";
-import Header from "@/app/components/Header";
-import Logo from "@/app/components/Logo";
-import InputField, { InputDropdown } from "@/app/components/InputField/InputField";
+import Header from "@/components/Header";
+import Logo from "@/components/Logo";
+import InputField, { InputDropdown } from "@/components/InputField/InputField";
 import { InvitedBy, ReservationType } from "@/app/models/enums";
 
 const Register = () => {

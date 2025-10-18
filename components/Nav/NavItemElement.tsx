@@ -7,7 +7,7 @@ import { NavItem } from "./data";
 function NavItemElement({ item }: { item: NavItem }) {
   const pathName = usePathname();
   return (
-    <Link className={`flex flex-col items-center${pathName.includes(item.route) ? " text-primary" : ""}`} href={`/admin${item.route}`}>
+    <Link className={`flex flex-col items-center${pathName.includes(item.route) ? " text-primary" : ""}`} href={`${item.route}`}>
       {item.icon}
       <div className="text-xs mt-1">{item.title}</div>
     </Link>

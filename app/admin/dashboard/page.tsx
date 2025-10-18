@@ -1,10 +1,10 @@
 "use client";
-import Header from "@/app/components/Header";
+import Header from "@/components/Header";
 import React, { useEffect } from "react";
 import { useDashboardHook } from "./dashboard.hook";
 import { CircularProgress } from "@mui/material";
 import { PieChart, Pie, Cell, Legend, Tooltip, ResponsiveContainer } from "recharts";
-import Countdown from "@/app/components/Countdown";
+import Countdown from "@/components/Countdown";
 import { weddingDate } from "@/lib/constants";
 
 function Dashboard() {

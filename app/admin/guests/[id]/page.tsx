@@ -1,13 +1,13 @@
 "use client";
 import React, { useEffect } from "react";
 import { useGuestDetails } from "./guest-details.hook";
-import FullScreenLoading from "@/app/components/FullScreenLoading";
-import Header from "@/app/components/Header";
+import FullScreenLoading from "@/components/FullScreenLoading";
+import Header from "@/components/Header";
 import { GetReservationType, ReservationType } from "@/app/models/enums";
 import { ContentCopy, Download, EventSeat, Person, Share } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import Link from "next/link";
-import GuestQRCode from "@/app/components/GuestQRCode";
+import GuestQRCode from "@/components/GuestQRCode";
 
 function GuestDetails() {
   const hook = useGuestDetails();

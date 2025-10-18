@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/time-record",
+        destination: "/time-record/records",
+        permanent: true,
+      },
+      {
         source: "/",
         destination: "/home",
         permanent: true,

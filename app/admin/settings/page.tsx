@@ -1,6 +1,6 @@
 "use client";
-import Header from "@/app/components/Header";
-import NavLink from "@/app/components/NavLink";
+import Header from "@/components/Header";
+import NavLink from "@/components/NavLink";
 import { useAuthContext } from "@/app/providers/auth.context";
 import { logout } from "@/lib/server-functions";
 import { Divider } from "@mui/material";

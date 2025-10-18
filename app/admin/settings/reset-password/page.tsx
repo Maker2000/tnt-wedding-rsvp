@@ -1,9 +1,9 @@
 "use client";
-import InputField from "@/app/components/InputField/InputField";
+import InputField from "@/components/InputField/InputField";
 import React from "react";
 import { useResetPassword } from "./reset-password.hook";
-import Header from "@/app/components/Header";
-import HideUnhideIcon from "@/app/components/HideUnhideIcon";
+import Header from "@/components/Header";
+import HideUnhideIcon from "@/components/HideUnhideIcon";
 import { CircularProgress } from "@mui/material";
 
 const ResetPassword = () => {

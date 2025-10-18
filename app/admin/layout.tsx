@@ -1,7 +1,6 @@
 import { cookies } from "next/headers";
-import BottomNav from "../components/Nav/BottomNav";
-import SideNav from "../components/Nav/SideNav";
-import "./../admin.css";
+import BottomNav from "../../components/Nav/BottomNav";
+import SideNav from "../../components/Nav/SideNav";
 import { CookieKey } from "../models/enums";
 import { redirect } from "next/navigation";
 export default async function AdminLayout({

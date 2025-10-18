@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-import Logo from "../components/Logo";
+import Logo from "../../components/Logo";
 import "./../save-the-date.css";
 function SaveTheDate() {
   const [clicked, setClicked] = useState(false);

@@ -1,6 +1,6 @@
 "use client";
-import HideUnhideIcon from "@/app/components/HideUnhideIcon";
-import InputField from "@/app/components/InputField/InputField";
+import HideUnhideIcon from "@/components/HideUnhideIcon";
+import InputField from "@/components/InputField/InputField";
 import React from "react";
 import { useLoginHook } from "./login.hook";
 import "./../admin.css";

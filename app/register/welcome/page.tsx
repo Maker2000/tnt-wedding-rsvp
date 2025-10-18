@@ -1,13 +1,13 @@
 "use client";
-import FullScreenLoading, { Loading } from "@/app/components/FullScreenLoading";
-import Logo from "@/app/components/Logo";
+import FullScreenLoading, { Loading } from "@/components/FullScreenLoading";
+import Logo from "@/components/Logo";
 import React from "react";
 import { useGuestWelcomeHook } from "./welcome.hook";
 import { AttendanceResponse } from "@/app/models/enums";
 import { Place, Timer } from "@mui/icons-material";
-import Countdown from "@/app/components/Countdown";
+import Countdown from "@/components/Countdown";
 import { GuestDisplay } from "@/app/models/guest";
-import Separator from "@/app/components/Separator";
+import Separator from "@/components/Separator";
 import { format } from "date-fns";
 import Link from "next/link";
 import { weddingDate } from "@/lib/constants";
