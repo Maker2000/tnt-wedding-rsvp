@@ -1,13 +1,13 @@
 "use client";
 import React, { ReactElement, useState } from "react";
-import Logo from "../components/Logo";
-import Carousel from "../components/Carousel";
+import Logo from "../../components/Logo";
+import Carousel from "../../components/Carousel";
 import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
 import { CalendarMonth, Close, MenuBook, MyLocationSharp, Place, Timelapse, Timer } from "@mui/icons-material";
-import Countdown from "../components/Countdown";
+import Countdown from "../../components/Countdown";
 import { Menu } from "@mui/material";
-import Separator from "../components/Separator";
+import Separator from "../../components/Separator";
 import { weddingDate } from "@/lib/constants";
 
 export default function Home() {

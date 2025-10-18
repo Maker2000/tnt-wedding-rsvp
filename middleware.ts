@@ -20,7 +20,7 @@ const validateToken = async (req: NextRequest, keyReference: string, backupRefer
 };
 
 export async function middleware(req: NextRequest): Promise<NextResponse> {
-  if (req.nextUrl.pathname.match("api/admin")) {
+  if (req.nextUrl.pathname.match("api/admin") || req.nextUrl.pathname.match("api/time-record")) {
     try {
       return validateToken(req, CookieKey.adminToken);
     } catch (error) {
@@ -43,9 +43,15 @@ export async function middleware(req: NextRequest): Promise<NextResponse> {
       return NextResponse.redirect(new URL("/", req.url));
     }
   }
-  if (req.nextUrl.pathname.match("/admin")) {
+
+  if (req.nextUrl.pathname.match("/admin") || req.nextUrl.pathname.match("/time-record")) {
     let decodedToken = await decodeToken(req.cookies.get(CookieKey.adminToken)?.value);
-    if (!decodedToken) return NextResponse.redirect(new URL("/login", req.url));
+    if (!decodedToken) {
+      // preserve the originally requested path (including search) so the login page can redirect after auth
+      const loginUrl = new URL("/login", req.url);
+      loginUrl.searchParams.set("next", req.nextUrl.pathname + req.nextUrl.search);
+      return NextResponse.redirect(loginUrl);
+    }
     return NextResponse.next();
   }
   if (req.nextUrl.pathname.endsWith("/login")) {

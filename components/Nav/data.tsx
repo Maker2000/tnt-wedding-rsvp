@@ -9,22 +9,22 @@ export interface NavItem {
 export const navItems: Array<NavItem> = [
   {
     icon: <Dashboard />,
-    route: "/dashboard",
+    route: "/admin/dashboard",
     title: "Dashboard",
   },
   {
     icon: <Person />,
-    route: "/guests",
+    route: "/admin/guests",
     title: "Guests",
   },
   {
     icon: <QrCode />,
-    route: "/generate-invite",
+    route: "/admin/generate-invite",
     title: "Invite Code",
   },
   {
     icon: <Settings />,
-    route: "/settings",
+    route: "/admin/settings",
     title: "Settings",
   },
 ];

@@ -1,5 +1,5 @@
 import React from "react";
-import { Message } from "../models/user";
+import { Message } from "../app/models/user";
 
 const MessageCard = ({ message }: { message: Message }) => {
   return (

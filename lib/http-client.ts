@@ -1,5 +1,5 @@
 import { ApiResponseData } from "@/app/api/exception-filter";
-import { ServiceResponse } from "@/app/models/service-response";
+import { ServiceResponse, ServiceResponseStatus } from "@/app/models/service-response";
 
 export class HttpClient {
   private static async tryRequest<Res>(op: () => Promise<ServiceResponse<Res>>): Promise<ServiceResponse<Res>> {
@@ -40,6 +40,8 @@ export class HttpClient {
           await getResponseHeader(res.headers);
         }
         return ServiceResponse.success((await res.json()) as Res);
+      case 404:
+        return new ServiceResponse(ServiceResponseStatus.NotFound);
       case 400:
         return ServiceResponse.failed(new Error(((await res.json()) as ApiResponseData).message));
       case 401:

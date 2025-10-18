@@ -1,13 +1,13 @@
 "use client";
-import InputField, { InputDropdown } from "@/app/components/InputField/InputField";
+import InputField, { InputDropdown } from "@/components/InputField/InputField";
 import { ReservationType } from "@/app/models/enums";
 import React, { useEffect, useRef } from "react";
 import { useGenerateInviteHook } from "./generate-invite.hook";
-import Header from "@/app/components/Header";
+import Header from "@/components/Header";
 import { CircularProgress } from "@mui/material";
 import QRCodeStyling from "qr-code-styling";
 import { Guest } from "@/app/models/guest.mongoose";
-import GuestQRCode from "@/app/components/GuestQRCode";
+import GuestQRCode from "@/components/GuestQRCode";
 let qrCode: QRCodeStyling;
 function GenerateInvite() {
   const hook = useGenerateInviteHook();
