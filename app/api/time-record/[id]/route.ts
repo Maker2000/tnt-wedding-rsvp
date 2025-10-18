@@ -22,7 +22,6 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
     Contract.requireNotNull(timeRecord, "Data to update time record is required");
     let res = await TimeRecord.findOneAndUpdate({ _id: id }, timeRecord!, { new: true });
     Validation.requireNotNull(res, "Failed to update your time record, try again");
-    console.log("Updated time record", res);
     return NextResponse.json(res);
   });
 }

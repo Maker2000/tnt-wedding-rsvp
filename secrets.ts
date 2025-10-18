@@ -7,7 +7,6 @@ export const decodeToken = async (data?: string): Promise<AuthUser | undefined> 
       let { payload } = await jwtVerify<AuthUser>(data!, base64url.decode(process.env.JWT_SECRET!));
       return payload;
     } catch (error) {
-      console.log(error);
       return undefined;
     }
   }

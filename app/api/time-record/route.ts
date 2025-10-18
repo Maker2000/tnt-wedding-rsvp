@@ -11,7 +11,6 @@ export async function GET(): Promise<NextResponse> {
     let res = await TimeRecord.find({
       clockOutTime: { $exists: true },
     });
-    console.log("Fetched time records", res);
     return NextResponse.json(res);
   });
 }
@@ -36,7 +35,6 @@ export async function PUT(req: NextRequest): Promise<NextResponse> {
     Contract.requireNotNull(timeRecord, "Data to update time record is required");
     let res = await TimeRecord.findOneAndUpdate({ _id: timeRecord.id }, timeRecord!);
     Validation.requireNotNull(res, "Failed to update your user, try again");
-    console.log("Updated guest", res);
     return NextResponse.json(res);
   });
 }

@@ -12,7 +12,6 @@ export async function GET(): Promise<NextResponse> {
       clockOutTime: { $exists: false },
       clockInTime: { $exists: true, $ne: null },
     });
-    console.log("Found open time record", res);
     if (!res) {
       throw new NotFoundException("Open time record");
     }

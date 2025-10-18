@@ -4,7 +4,6 @@ export const tryOperation = async (op: () => Promise<NextResponse>): Promise<Nex
   try {
     return await op();
   } catch (error) {
-    console.log(error);
     if (error instanceof GeneralException) {
       return error.response();
     }

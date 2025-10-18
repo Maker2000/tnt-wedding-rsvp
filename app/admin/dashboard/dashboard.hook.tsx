@@ -7,7 +7,7 @@ export const useDashboardHook = () => {
   const getReport = async () => {
     setState((x) => (x = { ...x, isLoading: true }));
     const res = await HttpClient.getData<DashboardReport>("/api/admin/report");
-    console.log(res);
+    res;
     if (res.hasError()) {
       setState((x) => (x = { ...x, isLoading: false }));
       return;

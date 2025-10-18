@@ -65,7 +65,6 @@ export const useGuestWelcomeHook = () => {
         setState((x) => (x = { ...x, isLoading: false, hasError: true, errorMessage: res.error!.message, loadingMessage: "" }));
       } else {
         setState((x) => (x = { ...x, isLoading: false, hasError: false, errorMessage: "", loadingMessage: "" }));
-        console.log("Declined successfully", res.data);
         setCurrentGuest((x) => (x = res.data!));
       }
     }

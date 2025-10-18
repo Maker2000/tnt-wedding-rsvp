@@ -14,10 +14,8 @@ export async function POST(req: NextRequest) {
     Contract.requireNotNull(payload, "Login data is required.");
     await connectDB();
     let user = await User.findOne({ email: payload.email });
-    console.log(user);
     Validation.requireNotNull(user, "Incorrect username-password combination");
     let match = compareSync(payload.password, user!.password);
-    console.log(match);
     Validation.requires(match, "Incorrect username-password combination");
     let token = await encodeToken({ username: user!.username, id: user!.id, userType: UserType.admin });
     let res = NextResponse.json(user, {});
