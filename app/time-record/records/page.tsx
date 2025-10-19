@@ -69,11 +69,16 @@ export default function Records() {
   if (!recordsRaw.length) return <div className="p-4 text-gray-400">No records yet</div>;
 
   return (
-    <div className="p-3">
-      <div className="grid gap-3 grid-cols-1">
-        {recordsRaw.map((r: ITimeRecord, i: number) => {
-          return <RecordCard key={r.id ?? i} record={r} onClick={hook.setRecordPaid} />;
-        })}
+    <div className="relative">
+      <div className="p-3">
+        <div className="grid gap-3 grid-cols-1">
+          {recordsRaw.map((r: ITimeRecord, i: number) => {
+            return <RecordCard key={r.id ?? i} record={r} onClick={hook.setRecordPaid} />;
+          })}
+        </div>
+      </div>
+      <div className="fixed bottom-24 right-4 rounded-md bg-pink-500 bg-opacity-30 backdrop-filter backdrop-blur-md p-3 ">
+        Unpaid Hours: {hook.state.unpaidHours.toFixed(2)}
       </div>
     </div>
   );

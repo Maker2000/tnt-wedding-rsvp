@@ -8,9 +8,13 @@ import { Contract, Validation } from "@/lib/contracts";
 export async function GET(): Promise<NextResponse> {
   return tryOperation(async () => {
     await connectDB();
-    let res = await TimeRecord.find({
-      clockOutTime: { $exists: true },
-    });
+    let res = await TimeRecord.find(
+      {
+        clockOutTime: { $exists: true },
+      },
+      null,
+      { sort: { clockInTime: 1 } }
+    );
     return NextResponse.json(res);
   });
 }

@@ -17,10 +17,16 @@ export class TimeRecordService {
   static async availableTimeRecord(): Promise<ServiceResponse<ITimeRecord>> {
     return await HttpClient.getData<ITimeRecord>(`${this.timeRecordEndpoint}/record`);
   }
+
   static async closeTimeRecord(record: ITimeRecord): Promise<ServiceResponse<ITimeRecord>> {
     return await HttpClient.putData<ITimeRecord, ITimeRecord>(`${this.timeRecordEndpoint}/record`, record);
   }
+
   static async updateTimeRecord(record: ITimeRecord): Promise<ServiceResponse<ITimeRecord>> {
     return await HttpClient.putData<ITimeRecord, ITimeRecord>(`${this.timeRecordEndpoint}/${record.id}`, record);
+  }
+
+  static async getUnpaidHours(): Promise<ServiceResponse<{ totalHours: number }>> {
+    return await HttpClient.getData<{ totalHours: number }>(`${this.timeRecordEndpoint}/unpaid`);
   }
 }

@@ -8,21 +8,29 @@ export const useRecordsHook = () => {
     isLoading: boolean;
     errorMessage: string;
     records: ITimeRecord[];
+    unpaidHours: number;
   }>({
     isLoading: true,
     errorMessage: "",
     records: [],
+    unpaidHours: 0,
   });
 
   const fetchRecords = async () => {
     setState((x) => (x = { ...x, isLoading: true }));
     const res = await TimeRecordService.getAllTimeRecords();
     if (res.responseStatus === ServiceResponseStatus.Success) {
-      setState((x) => (x = { ...x, records: res.data!, isLoading: false, errorMessage: "" }));
+      setState((x) => (x = { ...x, records: res.data!, errorMessage: "" }));
     } else {
-      setState((x) => (x = { ...x, isLoading: false, errorMessage: res.error?.message || "An error occurred" }));
+      setState((x) => (x = { ...x, errorMessage: res.error?.message || "An error occurred" }));
     }
+    const unpaidRes = await TimeRecordService.getUnpaidHours();
+    if (unpaidRes.responseStatus === ServiceResponseStatus.Success) {
+      setState((x) => (x = { ...x, unpaidHours: unpaidRes.data?.totalHours || 0 }));
+    }
+    setState((x) => (x = { ...x, isLoading: false }));
   };
+
   const setRecordPaid = async (id: string) => {
     const recordIndex = state.records.findIndex((r) => r.id == id);
     if (recordIndex < 0) return;
@@ -40,6 +48,10 @@ export const useRecordsHook = () => {
     const updatedRecords = [...state.records];
     updatedRecords[recordIndex] = res.data!;
     setState((x) => (x = { ...x, records: updatedRecords }));
+    const unpaidRes = await TimeRecordService.getUnpaidHours();
+    if (unpaidRes.responseStatus === ServiceResponseStatus.Success) {
+      setState((x) => (x = { ...x, unpaidHours: unpaidRes.data?.totalHours || 0 }));
+    }
   };
   return { state, fetchRecords, setRecordPaid };
 };
