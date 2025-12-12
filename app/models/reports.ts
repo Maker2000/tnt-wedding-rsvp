@@ -5,4 +5,8 @@ export interface DashboardReport {
   reservedPlusOne: number;
   declinedGuests: number;
   declinedPlusOne: number;
+  unansweredGuests: number;
+  unansweredPlusOne: number;
+  notDeclined: number;
+  notDeclinedPlusOne: number;
 }
