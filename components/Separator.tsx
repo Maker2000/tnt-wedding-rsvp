@@ -1,9 +1,9 @@
 import React from "react";
 import Logo from "./Logo";
 
-function Separator() {
+function Separator({ py }: { py?: string }) {
   return (
-    <div className="flex items-center justify-center px-4 w-full">
+    <div className={`flex items-center justify-center px-4 w-full ${py ? py : ""}`}>
       <div className="w-full h-[1px] bg-gray-300 my-4"></div>
       <div className="p-3">
         <Logo size={70} leaf={false} />

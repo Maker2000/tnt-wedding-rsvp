@@ -17,7 +17,7 @@ function Dashboard() {
   const reserved = hook.state.reportData.reservedGuests + hook.state.reportData.reservedPlusOne;
   const declined = hook.state.reportData.declinedGuests + hook.state.reportData.declinedPlusOne;
   const total = hook.state.reportData.totalGuests + hook.state.reportData.totalPlusOne;
-  const notResponded = Math.max(total - reserved - declined, 0);
+  const notResponded = (hook.state.reportData.unansweredGuests ?? 0) + (hook.state.reportData.unansweredPlusOne ?? 0);
   const pieData = [
     { name: "RSVP'd", value: reserved },
     { name: "Declined", value: declined },

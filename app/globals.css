@@ -87,3 +87,10 @@ input:-webkit-autofill:focus {
     --ag-row-hover-color: var(--panel-background);
     --ag-active-color: var(--accent-color)
 }
+
+.program-title {
+  text-transform: lowercase;
+}
+.program-title::first-letter{
+  text-transform: uppercase;
+}

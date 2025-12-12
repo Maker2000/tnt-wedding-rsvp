@@ -114,7 +114,7 @@ const Welcome = () => {
               <>
                 <Loading message={hook.state.loadingMessage} />
               </>
-            ) : hook.currentGuest?.response == AttendanceResponse.unanswered && !hook.isCutoffDatePassed() ? (
+            ) : hook.currentGuest?.response == AttendanceResponse.unanswered ? (
               <>
                 <div className="text-2xl pt-8">Please RSVP below</div>
                 <div className="flex gap-5 pt-12">
