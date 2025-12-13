@@ -21,9 +21,7 @@ function Program() {
         <div className="text-xl font-bold">JAMGOLIA PLACE</div>
         <div className="text-xl font-bold">12A KENDAL ROAD, INGLESIDE, MANDEVILLE</div>
       </div>
-
       <Separator py="py-40" />
-
       <div className="flex flex-col gap-12 px-4">
         {hook.sections.map((item, index) => (
           <div key={`section-wrapper-${index}`}>
@@ -44,6 +42,52 @@ function Program() {
             <Separator key={`separator-${index}`} py="py-40" />
           </div>
         ))}
+      </div>
+      <div className="mb-40">
+        <div className="uppercase pb-3 text-center text-xl font-bold">Praise AND WORSHIP SONGS</div>
+      </div>
+      <div>
+        <div className="uppercase pb-3 text-center text-xl font-bold">WE'VE COME THIS FAR BY FAITH</div>
+        We've come this far by faith
+        <br />
+        Leaning on the Lord
+        <br />
+        Trusting in His holy word
+        <br />
+        He never fail me yet
+        <br />
+        Oh, oh, oh, oh, oh, oh
+        <br />
+        No turning around
+        <br />
+        We've come this far by faith
+        <br />
+        <br />
+        <div className="uppercase pb-3  text-xl font-bold">I WILL TRUST IN THE LORD</div>
+        I will trust in the Lord (x3)
+        <br />
+        Till I die
+        <br />
+        I will trust in the Lord (x3)
+        <br />
+        Till I die
+        <br />
+        I'm gonna stay on the battle field (x3)
+        <br />
+        Till I die
+        <br />
+        I'm gonna stay on the battle field (x3)
+        <br />
+        Till I die
+        <br />
+        I'm gonna treat everybody right (x3)
+        <br />
+        Till I die
+        <br />
+        I'm gonna treat everybody right (x3)
+        <br />
+        Till I die
+        <br />
       </div>
     </div>
   );
